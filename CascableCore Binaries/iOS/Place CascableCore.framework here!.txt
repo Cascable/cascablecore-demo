@@ -1,0 +1,1 @@
+Place your iOS deliverable of CascableCore.framework in this directory to build the demo project.

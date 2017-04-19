@@ -6,20 +6,165 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		50C3C88F1EA78567006A5766 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C88E1EA78567006A5766 /* main.m */; };
+		50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8911EA78567006A5766 /* AppDelegate.m */; };
+		50C3C8981EA78567006A5766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C8961EA78567006A5766 /* Main.storyboard */; };
+		50C3C89A1EA78567006A5766 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C8991EA78567006A5766 /* Assets.xcassets */; };
+		50C3C89D1EA78567006A5766 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C89B1EA78567006A5766 /* LaunchScreen.storyboard */; };
+		50C3C8A51EA78697006A5766 /* CameraDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8A41EA78697006A5766 /* CameraDiscoveryViewController.m */; };
+		50C3C8AD1EA78AE9006A5766 /* CascableCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; };
+		50C3C8AE1EA78AF0006A5766 /* CascableCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		50C3C8AA1EA789EA006A5766 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				50C3C8AE1EA78AF0006A5766 /* CascableCore.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CascableCore iOS Demo (Obj-C).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50C3C88E1EA78567006A5766 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		50C3C8901EA78567006A5766 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		50C3C8911EA78567006A5766 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		50C3C8971EA78567006A5766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50C3C8991EA78567006A5766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50C3C89C1EA78567006A5766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50C3C89E1EA78567006A5766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50C3C8A31EA78697006A5766 /* CameraDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDiscoveryViewController.h; sourceTree = "<group>"; };
+		50C3C8A41EA78697006A5766 /* CameraDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDiscoveryViewController.m; sourceTree = "<group>"; };
+		50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CascableCore.framework; path = "CascableCore Binaries/iOS/CascableCore.framework"; sourceTree = SOURCE_ROOT; };
+		50C3C8AF1EA78DFC006A5766 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Macros.h; path = "CascableCore iOS Demo (Obj-C)/Macros.h"; sourceTree = "<group>"; };
+		50C3C8B01EA79936006A5766 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		50C3C8B51EA79E63006A5766 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50C3C8871EA78567006A5766 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50C3C8AD1EA78AE9006A5766 /* CascableCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		50C3C87F1EA78529006A5766 = {
 			isa = PBXGroup;
 			children = (
+				50C3C8AF1EA78DFC006A5766 /* Macros.h */,
+				50C3C88C1EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */,
+				50C3C88B1EA78567006A5766 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
+		50C3C88B1EA78567006A5766 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50C3C88C1EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C8901EA78567006A5766 /* AppDelegate.h */,
+				50C3C8911EA78567006A5766 /* AppDelegate.m */,
+				50C3C8B01EA79936006A5766 /* CameraViewController.h */,
+				50C3C8961EA78567006A5766 /* Main.storyboard */,
+				50C3C89B1EA78567006A5766 /* LaunchScreen.storyboard */,
+				50C3C8A21EA78664006A5766 /* Camera Discovery */,
+				50C3C8B11EA79E25006A5766 /* Main Screen */,
+				50C3C8B81EA7B497006A5766 /* Live View and Shooting */,
+				50C3C8991EA78567006A5766 /* Assets.xcassets */,
+				50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */,
+				50C3C88D1EA78567006A5766 /* Supporting Files */,
+			);
+			path = "CascableCore iOS Demo (Obj-C)";
+			sourceTree = "<group>";
+		};
+		50C3C88D1EA78567006A5766 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C89E1EA78567006A5766 /* Info.plist */,
+				50C3C88E1EA78567006A5766 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50C3C8A21EA78664006A5766 /* Camera Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C8A31EA78697006A5766 /* CameraDiscoveryViewController.h */,
+				50C3C8A41EA78697006A5766 /* CameraDiscoveryViewController.m */,
+			);
+			name = "Camera Discovery";
+			sourceTree = "<group>";
+		};
+		50C3C8B11EA79E25006A5766 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C8B51EA79E63006A5766 /* MainScreenViewController.h */,
+				50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */,
+			);
+			name = "Main Screen";
+			sourceTree = "<group>";
+		};
+		50C3C8B81EA7B497006A5766 /* Live View and Shooting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Live View and Shooting";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50C3C8891EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50C3C89F1EA78567006A5766 /* Build configuration list for PBXNativeTarget "CascableCore iOS Demo (Obj-C)" */;
+			buildPhases = (
+				50C3C8861EA78567006A5766 /* Sources */,
+				50C3C8871EA78567006A5766 /* Frameworks */,
+				50C3C8881EA78567006A5766 /* Resources */,
+				50C3C8AA1EA789EA006A5766 /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CascableCore iOS Demo (Obj-C)";
+			productName = "CascableCore iOS Demo (Obj-C)";
+			productReference = 50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		50C3C8801EA78529006A5766 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
+				TargetAttributes = {
+					50C3C8891EA78567006A5766 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 50C3C8831EA78529006A5766 /* Build configuration list for PBXProject "CascableCore Demo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -27,14 +172,63 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 50C3C87F1EA78529006A5766;
+			productRefGroup = 50C3C88B1EA78567006A5766 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				50C3C8891EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50C3C8881EA78567006A5766 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50C3C89D1EA78567006A5766 /* LaunchScreen.storyboard in Resources */,
+				50C3C89A1EA78567006A5766 /* Assets.xcassets in Resources */,
+				50C3C8981EA78567006A5766 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50C3C8861EA78567006A5766 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */,
+				50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */,
+				50C3C88F1EA78567006A5766 /* main.m in Sources */,
+				50C3C8A51EA78697006A5766 /* CameraDiscoveryViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		50C3C8961EA78567006A5766 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50C3C8971EA78567006A5766 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		50C3C89B1EA78567006A5766 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50C3C89C1EA78567006A5766 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		50C3C8841EA78529006A5766 /* Debug */ = {
@@ -49,6 +243,118 @@
 			};
 			name = Release;
 		};
+		50C3C8A01EA78567006A5766 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PROJECT_DIR)/CascableCore Binaries/iOS\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "CascableCore iOS Demo (Obj-C)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.cascable.CascableCore-iOS-Demo--Obj-C-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50C3C8A11EA78567006A5766 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(PROJECT_DIR)/CascableCore Binaries/iOS\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "CascableCore iOS Demo (Obj-C)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.cascable.CascableCore-iOS-Demo--Obj-C-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -60,6 +366,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		50C3C89F1EA78567006A5766 /* Build configuration list for PBXNativeTarget "CascableCore iOS Demo (Obj-C)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50C3C8A01EA78567006A5766 /* Debug */,
+				50C3C8A11EA78567006A5766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
