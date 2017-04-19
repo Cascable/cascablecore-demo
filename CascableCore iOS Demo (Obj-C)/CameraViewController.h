@@ -11,6 +11,8 @@
 
 @protocol CameraViewController <NSObject>
 
-@property (nonatomic, readwrite) id <CBLCamera> camera;
+-(void)setupUIForCamera:(id <CBLCamera>)camera;
+
+@property (nonatomic, readonly) id <CBLCamera> camera;
 
 @end

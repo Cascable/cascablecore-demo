@@ -16,6 +16,8 @@
 		50C3C8AD1EA78AE9006A5766 /* CascableCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; };
 		50C3C8AE1EA78AF0006A5766 /* CascableCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */; };
+		50C3C8BB1EA7B834006A5766 /* LiveViewAndShootingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8BA1EA7B834006A5766 /* LiveViewAndShootingViewController.m */; };
+		50C3C8BE1EA7BED6006A5766 /* ShotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +50,10 @@
 		50C3C8B01EA79936006A5766 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		50C3C8B51EA79E63006A5766 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
+		50C3C8B91EA7B834006A5766 /* LiveViewAndShootingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveViewAndShootingViewController.h; sourceTree = "<group>"; };
+		50C3C8BA1EA7B834006A5766 /* LiveViewAndShootingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveViewAndShootingViewController.m; sourceTree = "<group>"; };
+		50C3C8BC1EA7BED6006A5766 /* ShotPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotPreviewViewController.h; sourceTree = "<group>"; };
+		50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShotPreviewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +92,6 @@
 				50C3C8911EA78567006A5766 /* AppDelegate.m */,
 				50C3C8B01EA79936006A5766 /* CameraViewController.h */,
 				50C3C8961EA78567006A5766 /* Main.storyboard */,
-				50C3C89B1EA78567006A5766 /* LaunchScreen.storyboard */,
 				50C3C8A21EA78664006A5766 /* Camera Discovery */,
 				50C3C8B11EA79E25006A5766 /* Main Screen */,
 				50C3C8B81EA7B497006A5766 /* Live View and Shooting */,
@@ -100,6 +105,7 @@
 		50C3C88D1EA78567006A5766 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				50C3C89B1EA78567006A5766 /* LaunchScreen.storyboard */,
 				50C3C89E1EA78567006A5766 /* Info.plist */,
 				50C3C88E1EA78567006A5766 /* main.m */,
 			);
@@ -127,6 +133,10 @@
 		50C3C8B81EA7B497006A5766 /* Live View and Shooting */ = {
 			isa = PBXGroup;
 			children = (
+				50C3C8B91EA7B834006A5766 /* LiveViewAndShootingViewController.h */,
+				50C3C8BA1EA7B834006A5766 /* LiveViewAndShootingViewController.m */,
+				50C3C8BC1EA7BED6006A5766 /* ShotPreviewViewController.h */,
+				50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */,
 			);
 			name = "Live View and Shooting";
 			sourceTree = "<group>";
@@ -202,8 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C3C8BB1EA7B834006A5766 /* LiveViewAndShootingViewController.m in Sources */,
 				50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */,
 				50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */,
+				50C3C8BE1EA7BED6006A5766 /* ShotPreviewViewController.m in Sources */,
 				50C3C88F1EA78567006A5766 /* main.m in Sources */,
 				50C3C8A51EA78697006A5766 /* CameraDiscoveryViewController.m in Sources */,
 			);

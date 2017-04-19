@@ -12,6 +12,4 @@
 
 @interface MainScreenViewController : UITableViewController <CameraViewController>
 
-@property (nonatomic, readwrite) id <CBLCamera> camera;
-
 @end

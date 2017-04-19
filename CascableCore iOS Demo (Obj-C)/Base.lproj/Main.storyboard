@@ -177,7 +177,7 @@
         <!--Live View & Shooting-->
         <scene sceneID="4DN-HQ-LAX">
             <objects>
-                <viewController title="Live View &amp; Shooting" id="fRu-Nr-x5d" sceneMemberID="viewController">
+                <viewController title="Live View &amp; Shooting" id="fRu-Nr-x5d" customClass="LiveViewAndShootingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BBh-UK-ToB"/>
                         <viewControllerLayoutGuide type="bottom" id="BQG-Pu-nug"/>
@@ -185,12 +185,70 @@
                     <view key="view" contentMode="scaleToFill" id="FSn-NG-BXW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ipL-YZ-Qmq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="AZY-Qu-g1D"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUh-56-Fhp">
+                                <rect key="frame" x="144" y="364" width="87" height="30"/>
+                                <state key="normal" title="Shoot Image"/>
+                                <connections>
+                                    <action selector="shootImage:" destination="fRu-Nr-x5d" eventType="touchUpInside" id="RoL-G9-v8j"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ipL-YZ-Qmq" firstAttribute="leading" secondItem="FSn-NG-BXW" secondAttribute="leading" id="M7a-9u-RfQ"/>
+                            <constraint firstAttribute="trailing" secondItem="ipL-YZ-Qmq" secondAttribute="trailing" id="P7L-lt-0Qc"/>
+                            <constraint firstItem="XUh-56-Fhp" firstAttribute="centerX" secondItem="FSn-NG-BXW" secondAttribute="centerX" id="ewL-S7-AFd"/>
+                            <constraint firstItem="ipL-YZ-Qmq" firstAttribute="top" secondItem="BBh-UK-ToB" secondAttribute="bottom" id="fdz-fw-Z2J"/>
+                            <constraint firstItem="XUh-56-Fhp" firstAttribute="top" secondItem="ipL-YZ-Qmq" secondAttribute="bottom" constant="20" id="fyZ-rt-TXa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="liveViewImageView" destination="ipL-YZ-Qmq" id="Bfh-MO-dVh"/>
+                        <segue destination="DhM-y4-g6e" kind="show" identifier="shotPreview" id="yhW-El-Z95"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j38-b8-SbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2806" y="-149"/>
+            <point key="canvasLocation" x="2805.5999999999999" y="-149.77511244377811"/>
+        </scene>
+        <!--Shot Preview-->
+        <scene sceneID="nbO-mh-WYE">
+            <objects>
+                <viewController title="Shot Preview" id="DhM-y4-g6e" customClass="ShotPreviewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kBK-kk-4Q5"/>
+                        <viewControllerLayoutGuide type="bottom" id="9C7-ip-ztl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LO6-v1-1PP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ITs-OK-qP3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9C7-ip-ztl" firstAttribute="top" secondItem="ITs-OK-qP3" secondAttribute="bottom" id="2X7-ja-g10"/>
+                            <constraint firstItem="ITs-OK-qP3" firstAttribute="top" secondItem="kBK-kk-4Q5" secondAttribute="bottom" id="63O-J2-EEK"/>
+                            <constraint firstAttribute="trailing" secondItem="ITs-OK-qP3" secondAttribute="trailing" id="rmL-qd-kNM"/>
+                            <constraint firstItem="ITs-OK-qP3" firstAttribute="leading" secondItem="LO6-v1-1PP" secondAttribute="leading" id="tch-6M-gjA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ITs-OK-qP3" id="ho1-SW-cqX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oBu-m8-zpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3601" y="-150"/>
         </scene>
     </scenes>
 </document>

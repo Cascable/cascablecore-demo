@@ -163,7 +163,7 @@
 
     if ([segue.destinationViewController conformsToProtocol:@protocol(CameraViewController)]) {
         id <CameraViewController> cameraViewController = segue.destinationViewController;
-        cameraViewController.camera = self.lastConnectedCamera;
+        [cameraViewController setupUIForCamera:self.lastConnectedCamera];
     }
 }
 

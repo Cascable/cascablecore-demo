@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 };
 
 @interface MainScreenViewController ()
+@property (nonatomic, readwrite) id <CBLCamera> camera;
 @property (strong, nonatomic) IBOutlet UIView *busyView;
 @end
 
@@ -33,8 +34,8 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     [self removeObserver:self forKeyPath:CBLKeyPath(self, camera.connectionState)];
 }
 
--(void)setCamera:(id<CBLCamera>)camera {
-    _camera = camera;
+-(void)setupUIForCamera:(id <CBLCamera>)camera {
+    self.camera = camera;
 
     if (self.camera != nil) {
         self.title = [NSString stringWithFormat:@"%@ %@", self.camera.deviceInfo.manufacturer, self.camera.deviceInfo.model];
@@ -197,7 +198,7 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 
     if ([segue.destinationViewController conformsToProtocol:@protocol(CameraViewController)]) {
         id <CameraViewController> cameraViewController = segue.destinationViewController;
-        cameraViewController.camera = self.camera;
+        [cameraViewController setupUIForCamera:self.camera];
     }
 }
 
