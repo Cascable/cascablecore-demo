@@ -53,6 +53,11 @@
     // The exception to this, though, is cameras that support remote control without live view.
 
     if (!self.camera.liveViewEnabled && ![self.camera supportsFunctionality:CBLCameraRemoteControlWithoutLiveViewFunctionality]) {
+
+        // Some cameras allow for a reduced Live View refresh rate, which can be handy for reducing power consumption
+        // in both the camera and the iOS device.
+        self.camera.liveViewUpdateFrequency = CBLCameraLiveViewUpdateFrequencyReduced;
+
         [self.camera setLiveViewEnabled:YES callback:^(NSError *error) {
             // We don't need to do anything here – CBLPropertyProxy objects will pick up and changes
             // to property values, even if the value was nil before enabling live view. For the UI, our table cells

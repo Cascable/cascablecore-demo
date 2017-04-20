@@ -40,6 +40,7 @@ static void * const PropertyCellKVOContext = @"PropertyCellKVOContext";
 }
 
 -(void)addObservers {
+    // We'll observe the value and name properties for changes. That way, we can update our labels as appropriate.
     [self addObserver:self forKeyPath:CBLKeyPath(self, property.value) options:0 context:PropertyCellKVOContext];
     [self addObserver:self forKeyPath:CBLKeyPath(self, property.propertyName) options:0 context:PropertyCellKVOContext];
 }
@@ -92,7 +93,7 @@ static void * const PropertyCellKVOContext = @"PropertyCellKVOContext";
             displayValue = @"No Value";
 
         } else if ([value conformsToProtocol:@protocol(CBLUniversalExposurePropertyValue)]) {
-            // Exposure values (ISO, shutter speed, etc) have a succinctDescription property, which is handy for this.
+            // Exposure values (ISO, shutter speed, etc) have a succinctDescription property, which is handy for this demo.
             id <CBLUniversalExposurePropertyValue> exposureProperty = value;
             displayValue = exposureProperty.succinctDescription;
 

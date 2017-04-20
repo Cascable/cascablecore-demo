@@ -47,6 +47,10 @@
         [self handleShotPreview:previewDelivery];
     }];
 
+    // Some cameras allow for a reduced Live View refresh rate, which can be handy for reducing power consumption
+    // in both the camera and the iOS device. However, we want a nice, smooth image, so we'll make sure it's at full speed.
+    self.camera.liveViewUpdateFrequency = CBLCameraLiveViewUpdateFrequencyFull;
+
     // If live view is already enabled, no need to enable it again (it might be enabled from last time,
     /// or some cameras require live view to be enabled to operate correctly).
     if (self.camera.liveViewEnabled) {
