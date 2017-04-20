@@ -10,7 +10,8 @@
 #import "Macros.h"
 
 typedef NS_ENUM(NSUInteger, DemoScreenRow) {
-    DemoScreenRowLiveView = 0
+    DemoScreenRowLiveView = 0,
+    DemoScreenRowProperties = 1
 };
 
 @interface MainScreenViewController ()
@@ -188,6 +189,9 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == DemoScreenRowLiveView) {
         [self ensureCameraAllows:CBLCameraAvailableCommandCategoryRemoteShooting thenPerformSegue:@"liveViewShooting"];
+
+    } else if (indexPath.row == DemoScreenRowProperties) {
+        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryRemoteShooting thenPerformSegue:@"properties"];
     }
 }
 

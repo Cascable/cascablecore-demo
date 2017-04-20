@@ -18,6 +18,8 @@
 		50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8B61EA79E63006A5766 /* MainScreenViewController.m */; };
 		50C3C8BB1EA7B834006A5766 /* LiveViewAndShootingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8BA1EA7B834006A5766 /* LiveViewAndShootingViewController.m */; };
 		50C3C8BE1EA7BED6006A5766 /* ShotPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */; };
+		50C3C8C21EA8B6AF006A5766 /* PropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8C11EA8B6AF006A5766 /* PropertiesViewController.m */; };
+		50C3C8C51EA8BB1F006A5766 /* PropertyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8C41EA8BB1F006A5766 /* PropertyCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,10 @@
 		50C3C8BA1EA7B834006A5766 /* LiveViewAndShootingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveViewAndShootingViewController.m; sourceTree = "<group>"; };
 		50C3C8BC1EA7BED6006A5766 /* ShotPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotPreviewViewController.h; sourceTree = "<group>"; };
 		50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShotPreviewViewController.m; sourceTree = "<group>"; };
+		50C3C8C01EA8B6AF006A5766 /* PropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesViewController.h; sourceTree = "<group>"; };
+		50C3C8C11EA8B6AF006A5766 /* PropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesViewController.m; sourceTree = "<group>"; };
+		50C3C8C31EA8BB1F006A5766 /* PropertyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyCell.h; sourceTree = "<group>"; };
+		50C3C8C41EA8BB1F006A5766 /* PropertyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,7 @@
 				50C3C8A21EA78664006A5766 /* Camera Discovery */,
 				50C3C8B11EA79E25006A5766 /* Main Screen */,
 				50C3C8B81EA7B497006A5766 /* Live View and Shooting */,
+				50C3C8BF1EA8B688006A5766 /* Properties */,
 				50C3C8991EA78567006A5766 /* Assets.xcassets */,
 				50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */,
 				50C3C88D1EA78567006A5766 /* Supporting Files */,
@@ -139,6 +146,17 @@
 				50C3C8BD1EA7BED6006A5766 /* ShotPreviewViewController.m */,
 			);
 			name = "Live View and Shooting";
+			sourceTree = "<group>";
+		};
+		50C3C8BF1EA8B688006A5766 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C8C01EA8B6AF006A5766 /* PropertiesViewController.h */,
+				50C3C8C11EA8B6AF006A5766 /* PropertiesViewController.m */,
+				50C3C8C31EA8BB1F006A5766 /* PropertyCell.h */,
+				50C3C8C41EA8BB1F006A5766 /* PropertyCell.m */,
+			);
+			name = Properties;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +235,8 @@
 				50C3C8B71EA79E63006A5766 /* MainScreenViewController.m in Sources */,
 				50C3C8BE1EA7BED6006A5766 /* ShotPreviewViewController.m in Sources */,
 				50C3C88F1EA78567006A5766 /* main.m in Sources */,
+				50C3C8C21EA8B6AF006A5766 /* PropertiesViewController.m in Sources */,
+				50C3C8C51EA8BB1F006A5766 /* PropertyCell.m in Sources */,
 				50C3C8A51EA78697006A5766 /* CameraDiscoveryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
