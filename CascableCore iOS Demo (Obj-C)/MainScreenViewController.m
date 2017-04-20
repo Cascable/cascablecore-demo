@@ -11,7 +11,8 @@
 
 typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     DemoScreenRowLiveView = 0,
-    DemoScreenRowProperties = 1
+    DemoScreenRowProperties = 1,
+    DemoScreenRowFilesystem = 2
 };
 
 @interface MainScreenViewController ()
@@ -192,6 +193,9 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 
     } else if (indexPath.row == DemoScreenRowProperties) {
         [self ensureCameraAllows:CBLCameraAvailableCommandCategoryRemoteShooting thenPerformSegue:@"properties"];
+
+    } else if (indexPath.row == DemoScreenRowFilesystem) {
+        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryFilesystemAccess thenPerformSegue:@"filesystem"];
     }
 }
 
