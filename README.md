@@ -10,6 +10,8 @@ This project is a demonstration of some of the basic features of CascableCore, i
 - Working with camera properties.
 - Iterating the camera's filesystem, loading image metadata and thumbnails.
 
+![CascableCore Demo App Screenshots](Documentation%20Images/Screenshots.jpg?raw=true)
+
 For a more thorough example of what CascableCore can do, see our apps at [http://cascable.se](http://cascable.se) — they're built with the same CascableCore available here.
 
 ### Compiling
