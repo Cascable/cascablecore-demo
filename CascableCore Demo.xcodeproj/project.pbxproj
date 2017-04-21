@@ -210,6 +210,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Cascable AB";
 				TargetAttributes = {
 					50C3C8891EA78567006A5766 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -432,6 +433,7 @@
 				50C3C8A11EA78567006A5766 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
