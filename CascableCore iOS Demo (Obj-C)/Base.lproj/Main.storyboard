@@ -437,10 +437,27 @@
                             <outlet property="delegate" destination="Eqs-Ga-sLp" id="aR3-GB-vdC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="busyView" destination="5LC-b2-DQh" id="kLk-x8-upu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYh-1n-Khk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view opaque="NO" contentMode="scaleToFill" id="5LC-b2-DQh">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="JG3-6B-ku9">
+                            <rect key="frame" x="82" y="82" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.80135893489999999" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JG3-6B-ku9" firstAttribute="centerX" secondItem="5LC-b2-DQh" secondAttribute="centerX" id="cDs-sV-eWU"/>
+                        <constraint firstItem="JG3-6B-ku9" firstAttribute="centerY" secondItem="5LC-b2-DQh" secondAttribute="centerY" id="mJA-65-Ryk"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2805.5999999999999" y="782.15892053973016"/>
+            <point key="canvasLocation" x="2806" y="768"/>
         </scene>
     </scenes>
 </document>
