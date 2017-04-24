@@ -14,6 +14,8 @@ This project is a demonstration of some of the basic features of CascableCore, i
 
 For a more thorough example of what CascableCore can do, see our apps at [http://cascable.se](http://cascable.se) — they're built with the same CascableCore available here.
 
+For a more detailed overview of CascableCore, see the [Getting Started With CascableCore](Getting%20Started%20With%20CascableCore.md) document included in this repository.
+
 ### Compiling
 
 If you're interesting in licensing CascableCore, get in touch with us at hi@cascable.se and let us know your idea — if we think CascableCore is a good fit for you, we'll send you an evaluation copy of the CascableCore framework.
