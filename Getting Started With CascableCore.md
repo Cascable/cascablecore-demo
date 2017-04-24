@@ -193,11 +193,11 @@ id <CBLCamera> camera = …;
 [camera addObserver:self keyPath:@"connectionState" options:0 context:myKvoContext];
 
 // KVO Handler:
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id <NSObject>)object change:(NSDictionary *)change context:(void *)context {
 
     if ([keyPath isEqualToString:@"connectionState"]) {
-        if (self.camera.connectionState == && !self.camera.disconnectionWasExpected) {
+        if (self.camera.connectionState == CBLCameraConnectionStateNotConnected &&
+            !self.camera.disconnectionWasExpected) {
             // This was an unexpected disconnect!
             [self showUnexpectedDisconnectUI];
         }
@@ -262,9 +262,9 @@ Setting a camera's command categories to the value they're already at is a harml
 
 **Note:** Many cameras require live view to be enabled for shooting to work correctly. Some cameras require live view to be enabled for *anything* to work correctly — in such cases, CascableCore may enable live view automatically.
 
-To enable live view, use `CBLCamera`'s `setLiveViewEnabled:callback:` method. You can be observed of new live view frames by Key-Value observing your camera's `liveViewFrame` property.
+To enable live view, use `CBLCamera`'s `setLiveViewEnabled:callback:` method. You can be notified of new live view frames by Key-Value observing your camera's `liveViewFrame` property.
 
-It's important to bear in mind that a camera's focus points will be relative to a given coordinate system which will certainly be different to your application's views, and often different to the size of the image give by the camera. In some cases, the aspect ratio may not even match — some Panasonic cameras place AF areas in a square of `1000x1000` even if the viewfinder image is at an aspect ratio of `4:3` or even `16:9`.
+It's important to bear in mind that a camera's focus points will be relative to a given coordinate system which will certainly be different to your application's views, and often different to the size of the image given by the camera. In some cases, the aspect ratio may not even match — some Panasonic cameras place AF areas in a square of `1000x1000` even if the viewfinder image is at an aspect ratio of `4:3` or even `16:9`.
 
 To assist with this, `CBLCameraLiveViewFrame` objects returned by a camera's `liveViewFrame` property contain a numer of geometry transformation methods that perform the relevant math for you. Otherwise, you can get the camera's coordinate space using `CBLCameraLiveViewFrame`'s `aspect` property.
 
@@ -323,7 +323,7 @@ for (id <CBLCameraLiveViewAFArea> afArea in liveViewFrame.flexiZoneAFRects) {
 
     // The tap location must be translated to the camera's own coodinate system.
     CGPoint translatedPoint = [liveViewFrame pointInAspectTranslatedFromPoint:tapLocation
-                                                                      inRect:self.imageView.bounds];
+                                                                       inRect:self.imageView.bounds];
 
     // Now it's been translated, we can send the point to the camera.
     [camera touchAFAtPoint:translatedPoint callback:^(NSError *error) {
