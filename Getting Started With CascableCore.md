@@ -14,6 +14,8 @@ Next, navigate to your target's **General** settings and ensure `CascableCore.fr
 
 <img src="Documentation%20Images/setup-general.png" width="959">
 
+Next, navigate to **Build Settings** and set the **Enable Bitcode** setting to **No**. Due to our build process, CascableCore does not have a Bitcode slice. 
+
 Next, **only if your project only contains Objective-C**, navigate to **Build Settings** and ensure that **Always Embed Swift Standard Libraries** is set to **Yes**. If your project contains Swift code or depends on Swift libraries, there's no need to perform this step.
 
 Finally, navigate to **Build Phases** and add a new **Copy Files** build phase, with the destination set to **Frameworks**. Ensure that CascableCore is listed in this phase. 
