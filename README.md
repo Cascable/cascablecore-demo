@@ -18,7 +18,7 @@ For a more detailed overview of CascableCore, see the [Getting Started With Casc
 
 ### Compiling
 
-If you're interesting in licensing CascableCore, get in touch with us at hi@cascable.se and let us know your idea — if we think CascableCore is a good fit for you, we'll send you an evaluation copy of the CascableCore framework.
+If you're interested in licensing CascableCore, head over to our [developer site](http://developer.cascable.se) and sign up for an account. From there you can fill out a request for an evaluation license — if we think CascableCore is a good fit for you, we'll send you an evaluation copy of the CascableCore framework.
 
 Once you have your evaluation copy, put it in `CascableCore Binaries/iOS/CascableCore.framework` and the project will compile.
 
