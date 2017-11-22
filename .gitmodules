@@ -1,0 +1,3 @@
+[submodule "Vendor/CascableCore"]
+	path = Vendor/CascableCore
+	url = https://github.com/Cascable/cascablecore-binaries.git

@@ -14,13 +14,20 @@ This project is a demonstration of some of the basic features of CascableCore, i
 
 For a more thorough example of what CascableCore can do, see our apps at [http://cascable.se](http://cascable.se) — they're built with the same CascableCore available here.
 
-For a more detailed overview of CascableCore, see the [Getting Started With CascableCore](Getting%20Started%20With%20CascableCore.md) document included in this repository.
+For a more detailed overview of the CascableCore APIs, see the documentation in the [CascableCore Binaries](http://github.com/cascable/cascablecore-binaries/) repository.
 
-### Compiling
+### Getting Started
 
-If you're interested in licensing CascableCore, head over to our [developer site](http://developer.cascable.se) and sign up for an account. From there you can fill out a request for an evaluation license — if we think CascableCore is a good fit for you, we'll send you an evaluation copy of the CascableCore framework.
+- First, close this repo to your local machine.
+- Next, run `git submodule update --init --recursive` inside the project directory. This will check out the CascableCore binary. 
 
-Once you have your evaluation copy, put it in `CascableCore Binaries/iOS/CascableCore.framework` and the project will compile.
+**Note:** You need `git-lfs` installed and configured on your development machine in order to check out CascableCore.
+
+### Getting a Trial License
+
+If you're interested in licensing CascableCore, head over to our [developer site](http://developer.cascable.se) and sign up for an account. From there you can fill out a request for an evaluation license — if we think CascableCore is a good fit for you, we'll send you an evaluation license.
+
+Once you have your evaluation license, replace the `CascableCoreLicense.h` and `CascableCoreLicense.m` files with it and the project will compile.
 
 ### License 
 

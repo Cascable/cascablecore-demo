@@ -7,6 +7,8 @@
 //  For license information, see LICENSE.md.
 
 #import "AppDelegate.h"
+#import "CascableCoreLicense.h"
+@import CascableCore;
 
 @interface AppDelegate ()
 
@@ -16,7 +18,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    // Apply the CascableCore license. IMPORTANT: You must supply your own CascableCore license.
+    // See http://developer.cascable.se/ for details.
+    CBLLicenseVerificationResult result = [CBLLicenseVerification applyLicense:[CascableCoreLicense license]];
+    if (result != CBLLicenseVerificationResultSuccess) {
+        if (result == CBLLicenseVerificationResultExpired) {
+            NSLog(@"Applying license failed: Expired!");
+        } else if (result == CBLLicenseVerificationResultInvalidLicense) {
+            NSLog(@"Applying license failed: Invalid!");
+        }
+    }
+
     return YES;
 }
 
