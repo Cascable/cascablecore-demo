@@ -52,20 +52,30 @@
 
     // The exception to this, though, is cameras that support remote control without live view.
 
-    if (!self.camera.liveViewEnabled && ![self.camera supportsFunctionality:CBLCameraRemoteControlWithoutLiveViewFunctionality]) {
+    // We don't need to do anything once live view is active - CBLPropertyProxy objects will pick up all changes
+    // to property values, even if the value was nil before enabling live view. For the UI, our table cells are observing value changes individually.
 
-        // Some cameras allow for a reduced Live View refresh rate, which can be handy for reducing power consumption
-        // in both the camera and the iOS device.
-        self.camera.liveViewUpdateFrequency = CBLCameraLiveViewUpdateFrequencyReduced;
+    if (!self.camera.liveViewStreamActive && ![self.camera supportsFunctionality:CBLCameraRemoteControlWithoutLiveViewFunctionality]) {
 
-        [self.camera setLiveViewEnabled:YES callback:^(NSError *error) {
-            // We don't need to do anything here – CBLPropertyProxy objects will pick up and changes
-            // to property values, even if the value was nil before enabling live view. For the UI, our table cells
-            // are observing value changes individually.
-        }];
+        CBLCameraLiveViewFrameDelivery delivery = ^(id<CBLCameraLiveViewFrame> frame, dispatch_block_t completionHandler) {
+            // Since we're not actually using the frames here, we don't need to do much. However, we *do* need to call the
+            // completion handler, and we can do so with a delay to keep the framerate (and therefore CPU and power use) down.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), completionHandler);
+        };
+
+        [self.camera beginLiveViewStreamWithDelivery:delivery
+                                       deliveryQueue:dispatch_get_main_queue()
+                                  terminationHandler:^(CBLCameraLiveViewTerminationReason reason, NSError * error) {
+                                      NSLog(@"Live view terminated.");
+                                  }];
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    if (self.camera.liveViewStreamActive) {
+        [self.camera endLiveViewStream];
+    }
+}
 
 #pragma mark - Table view data source
 

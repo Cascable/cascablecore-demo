@@ -153,7 +153,7 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     [self showBusyOverlay];
 
     CBLWeakify(self);
-    [self.camera setCurrentCommandCategories:category callback:^(NSError *error) {
+    [self.camera setCurrentCommandCategories:category completionCallback:^(NSError *error) {
         CBLStrongify(self);
         NSLog(@"%@: …category switch complete.", THIS_FILE);
         [self performSegueWithIdentifier:segueIdentifier sender:self];

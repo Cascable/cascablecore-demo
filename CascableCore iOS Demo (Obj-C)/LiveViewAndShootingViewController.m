@@ -19,22 +19,19 @@
 
 @implementation LiveViewAndShootingViewController
 
--(id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setupLiveViewObserver];
-    }
-    return self;
-}
-
 -(void)dealloc {
-    [self removeObserver:self forKeyPath:CBLKeyPath(self, camera.liveViewFrame)];
-
     // Make sure we remove our shot preview observer so it doesn't get fired after we're deallocated!
     if (self.shotPreviewObserver != nil) {
         [self.camera removeShotPreviewObserverWithToken:self.shotPreviewObserver];
     }
+
+    // Turn off live view if it's running.
+    if (self.camera.liveViewStreamActive) {
+        [self.camera endLiveViewStream];
+    }
 }
+
+#pragma mark - Live View
 
 -(void)setupUIForCamera:(id <CBLCamera>)camera {
 
@@ -47,48 +44,30 @@
         [self handleShotPreview:previewDelivery];
     }];
 
-    // Some cameras allow for a reduced Live View refresh rate, which can be handy for reducing power consumption
-    // in both the camera and the iOS device. However, we want a nice, smooth image, so we'll make sure it's at full speed.
-    self.camera.liveViewUpdateFrequency = CBLCameraLiveViewUpdateFrequencyFull;
+    CBLCameraLiveViewFrameDelivery delivery = ^(id<CBLCameraLiveViewFrame> frame, dispatch_block_t completionHandler) {
+        CBLStrongify(self);
 
-    // If live view is already enabled, no need to enable it again (it might be enabled from last time,
-    /// or some cameras require live view to be enabled to operate correctly).
-    if (self.camera.liveViewEnabled) {
-        return;
-    }
+        // The live view image frame's image is always in the landscape orientation, even if the camera is rotated.
+        // This is because focus areas etc. are always relative to the landscape orientation (i.e., when you rotate
+        // the camera, the focus points rotate with it, so they're always relative to the landscape orientation).
+        // If the camera supports live view orientation, the frame's orientation property may be something
+        // other than CBLCameraLiveViewFrameOrientationLandscape, and you may choose to rotate your UI.
+        self.liveViewImageView.image = frame.image;
 
-    [self.camera setLiveViewEnabled:YES callback:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@: Enabling live view failed with error: %@", THIS_FILE, error);
-        } else {
-            NSLog(@"%@: Enabled live view", THIS_FILE);
-        }
-    }];
-}
+        // We must call the completion handler once we're ready for more live view frames. Since we want a nice, smooth
+        // image, we'll call the completion handler without delay.
+        completionHandler();
+    };
 
-#pragma mark - Live View
-
--(void)setupLiveViewObserver {
-    // We add a KVO observer to the camera's live view frame so we can update the image.
-    [self addObserver:self forKeyPath:CBLKeyPath(self, camera.liveViewFrame) options:0 context:nil];
-}
-
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-
-    // This KVO handler gets called when our camera's liveViewFrame property changes.
-
-    if (![keyPath isEqualToString:CBLKeyPath(self, camera.liveViewFrame)]) {
-        // (KVO best practices dictate passing observations we don't know about to super)
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-        return;
-    }
-
-    // The live view image frame's image is always in the landscape orientation, even if the camera is rotated.
-    // This is because focus areas etc. are always relative to the landscape orientation (i.e., when you rotate
-    // the camera, the focus points rotate with it, so they're always relative to the landscape orientation).
-    // If the camera supports live view orientation, the liveViewFrame's orientation property may be something
-    // other than CBLCameraLiveViewFrameOrientationLandscape, and you may choose to rotate your UI.
-    self.liveViewImageView.image = self.camera.liveViewFrame.image;
+    [self.camera beginLiveViewStreamWithDelivery:delivery
+                                   deliveryQueue:dispatch_get_main_queue()
+                              terminationHandler:^(CBLCameraLiveViewTerminationReason reason, NSError * error) {
+                                  if (error != nil) {
+                                      NSLog(@"%@: Live view terminated with error: %@", THIS_FILE, error);
+                                  } else {
+                                      NSLog(@"%@: Terminated live view", THIS_FILE);
+                                  }
+                              }];
 }
 
 #pragma mark - Shooting Images
