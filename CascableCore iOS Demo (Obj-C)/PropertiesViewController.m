@@ -55,7 +55,7 @@
     // We don't need to do anything once live view is active - CBLPropertyProxy objects will pick up all changes
     // to property values, even if the value was nil before enabling live view. For the UI, our table cells are observing value changes individually.
 
-    if (!self.camera.liveViewStreamActive && ![self.camera supportsFunctionality:CBLCameraRemoteControlWithoutLiveViewFunctionality]) {
+    if (!self.camera.liveViewStreamActive && ![self.camera supportsFunctionality:CBLCameraSupportedFunctionalityRemoteControlWithoutLiveView]) {
 
         CBLCameraLiveViewFrameDelivery delivery = ^(id<CBLCameraLiveViewFrame> frame, dispatch_block_t completionHandler) {
             // Since we're not actually using the frames here, we don't need to do much. However, we *do* need to call the
