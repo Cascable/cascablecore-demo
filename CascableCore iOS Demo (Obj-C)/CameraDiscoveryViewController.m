@@ -52,8 +52,7 @@
     self.titleLabel.text = @"Connecting…";
     NSLog(@"%@: Connecting to %@…", THIS_FILE, camera.service.model);
 
-    [camera connectWithClientName:@"CascableCore Demo"
-               completionCallback:^(NSError * _Nullable error, NSArray<id<CBLCameraConnectionWarning>> * _Nullable warnings) {
+    [camera connectWithCompletionCallback:^(NSError * _Nullable error, NSArray<id<CBLCameraConnectionWarning>> * _Nullable warnings) {
 
         if (error != nil) {
             if (error.code != CBLErrorCodeCancelledByUser) {
@@ -123,6 +122,10 @@
 
     // Set up discovery using delegate methods. You can also use KVO or block callbacks.
     CBLCameraDiscovery *discovery = [CBLCameraDiscovery sharedInstance];
+
+    // The client name will be shown on the screen of some cameras when pairing.
+    // It must be set before you start searching for cameras.
+    discovery.clientName = @"CascableCore Demo";
     discovery.delegate = self;
     [discovery beginSearching];
 }
