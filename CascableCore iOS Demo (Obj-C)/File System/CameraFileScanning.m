@@ -19,15 +19,15 @@
     return sharedInstance;
 }
 
--(void)scanForFilesInCamera:(nonnull id <CBLCamera>)camera
-          matchingPredicate:(nullable CameraFileScanningPredicate)predicate
-                   callback:(nonnull CameraFileScanningCompletion)completion {
+-(NSProgress * _Nullable)scanForFilesInCamera:(nonnull id <CBLCamera>)camera
+                            matchingPredicate:(nullable CameraFileScanningPredicate)predicate
+                                     callback:(nonnull CameraFileScanningCompletion)completion {
 
     if (![camera currentCommandCategoriesContainsCategory:CBLCameraAvailableCommandCategoryFilesystemAccess]) {
         // Can't scan without filesystem access!
         NSError *error = [NSError errorWithDomain:CBLErrorDomain code:CBLErrorCodeIncorrectCommandCategory userInfo:nil];
         completion(nil, error);
-        return;
+        return nil;
     }
 
     NSArray <id <CBLFileStorage>> *storageDevices = camera.storageDevices;
@@ -35,7 +35,7 @@
     if (storageDevices.count == 0) {
         NSError *error = [NSError errorWithDomain:CBLErrorDomain code:CameraFileScanningErrorCodeNoStorageDevices userInfo:nil];
         completion(nil, error);
-        return;
+        return nil;
     }
 
     NSMutableArray *rootFolders = [NSMutableArray new];
@@ -50,10 +50,28 @@
     if (rootFolders.count == 0) {
         NSError *error = [NSError errorWithDomain:CBLErrorDomain code:CameraFileScanningErrorCodeNoRootFolders userInfo:nil];
         completion(nil, error);
-        return;
+        return nil;
     }
 
     [self findItemsRecursivelyInFolders:rootFolders matchingPredicate:predicate callback:completion];
+
+    NSMutableArray <NSProgress *> *progresses = [NSMutableArray new];
+    for (id <CBLFileStorage> storage in storageDevices) {
+        if (storage.catalogProgress != nil) {
+            [progresses addObject:storage.catalogProgress];
+        }
+    }
+
+    if (progresses.count == 0) {
+        return nil;
+    }
+
+    NSProgress *totalProgress = [NSProgress progressWithTotalUnitCount:progresses.count];
+    for (NSProgress *progress in progresses) {
+        [totalProgress addChild:progress withPendingUnitCount:1];
+    }
+
+    return totalProgress;
 }
 
 -(void)findItemsRecursivelyInFolders:(nonnull NSArray <id <CBLFileSystemFolderItem>> *)folders

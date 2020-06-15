@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, ItemLoadingState) {
     id <CBLFileSystemItem> itemAtStartOfStep = self.item;
 
     [self.item loadMetadata:^(NSError *error) {
+        if (error != nil) { NSLog(@"WARNING: Got error when loading metadata: %@", error); }
         if (self.item != itemAtStartOfStep) {
             return;
         } else {
@@ -96,6 +97,7 @@ typedef NS_ENUM(NSUInteger, ItemLoadingState) {
         return item == self.item;
 
     } thumbnailDeliveryBlock:^(id <CBLFileSystemItem> item, NSError *error, NSData *imageData) {
+        if (error != nil) { NSLog(@"WARNING: Got error when loading thumbnail: %@", error); }
 
         if (item != self.item) {
             return;

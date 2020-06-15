@@ -40,7 +40,24 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     self.camera = camera;
 
     if (self.camera != nil) {
-        self.title = [NSString stringWithFormat:@"%@ %@", self.camera.deviceInfo.manufacturer, self.camera.deviceInfo.model];
+        NSMutableArray *titleComponents = [NSMutableArray new];
+        id <CBLDeviceInfo> deviceInfo = self.camera.deviceInfo;
+
+        if (deviceInfo.manufacturer != nil) {
+            [titleComponents addObject:deviceInfo.manufacturer];
+        }
+
+        if (deviceInfo.model != nil) {
+            [titleComponents addObject:deviceInfo.model];
+        }
+
+        if (titleComponents.count > 0) {
+            self.title = [titleComponents componentsJoinedByString:@" "];
+        } else if (self.camera.friendlyDisplayName != nil) {
+            self.title = self.camera.friendlyDisplayName;
+        } else {
+            self.title = @"Unknown Camera";
+        }
     } else {
         self.title = @"";
     }

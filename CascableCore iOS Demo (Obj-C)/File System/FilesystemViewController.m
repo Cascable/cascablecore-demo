@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIView *busyView;
 @property (nonatomic, readwrite) id <CBLCamera> camera;
 @property (nonatomic, readwrite) NSArray <id <CBLFileSystemItem>> *items;
+@property (nonatomic, readwrite) IBOutlet UIProgressView *progressView;
 @end
 
 @implementation FilesystemViewController
@@ -33,7 +34,7 @@
     // your users will see nothing for a long time.
     CameraFileScanning *scanner = [CameraFileScanning sharedInstance];
 
-    [scanner scanForFilesInCamera:self.camera matchingPredicate:^BOOL(id <CBLFileSystemItem> item) {
+    NSProgress *progress = [scanner scanForFilesInCamera:self.camera matchingPredicate:^BOOL(id <CBLFileSystemItem> item) {
         // We're only interested in images and items that don't have loaded metadata (they're probably images too).
         return item.isKnownImageType || !item.metadataLoaded;
 
@@ -43,6 +44,12 @@
         [self hideBusyOverlay];
         [self.tableView reloadData];
     }];
+
+    if (progress == nil) {
+        self.progressView.hidden = YES;
+    } else {
+        self.progressView.observedProgress = progress;
+    }
 }
 
 #pragma mark - Lifecycle

@@ -7,7 +7,7 @@
 //  For license information, see LICENSE.md.
 
 #import <Foundation/Foundation.h>
-@import CascableCore;
+#import <CascableCore/CascableCore.h>
 
 typedef BOOL (^CameraFileScanningPredicate)(id <CBLFileSystemItem> _Nonnull);
 typedef void (^CameraFileScanningCompletion)(NSArray <id <CBLFileSystemItem>> * _Nullable , NSError * _Nullable);
@@ -29,12 +29,13 @@ typedef NS_ENUM(NSUInteger, CameraFileScanningErrorCode) {
  Iterate the camera's filesystem for items. This operation may take a long time.
 
  @param camera The camera to iterate.
- @param predicate The predicate to filter out files. In the filter block, return `YES` if you want the passed item, 
-        otherwise `NO`. Pass `nil` to this parameter to return all files.
+ @param predicate The predicate to filter out files. In the filter block, return `YES` if you want the passed item,
+ otherwise `NO`. Pass `nil` to this parameter to return all files.
  @param completion The completion block to be triggered once iteration has completed or fails.
+ @return Returns an `NSProgress` object tracking the progress of the load, if that information is available from the camera.
  */
--(void)scanForFilesInCamera:(nonnull id <CBLCamera>)camera
-          matchingPredicate:(nullable CameraFileScanningPredicate)predicate
-                   callback:(nonnull CameraFileScanningCompletion)completion;
+-(NSProgress * _Nullable)scanForFilesInCamera:(nonnull id <CBLCamera>)camera
+                            matchingPredicate:(nullable CameraFileScanningPredicate)predicate
+                                     callback:(nonnull CameraFileScanningCompletion)completion;
 
 @end
