@@ -3,16 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5040A85C1FFE3342004B8516 /* StopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5040A85B1FFE3342004B8516 /* StopKit.framework */; };
-		5040A85D1FFE3345004B8516 /* StopKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5040A85B1FFE3342004B8516 /* StopKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8911EA78567006A5766 /* AppDelegate.m */; };
 		50C3C8981EA78567006A5766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C8961EA78567006A5766 /* Main.storyboard */; };
-		50C3C8AD1EA78AE9006A5766 /* CascableCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; };
-		50C3C8AE1EA78AF0006A5766 /* CascableCore.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		50EA4F161FC5A80900F4395A /* CascableCoreLicense.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4F141FC5A80900F4395A /* CascableCoreLicense.m */; };
 		50F5BBD124975D0500332F9E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5BBB824975D0500332F9E /* MainScreenViewController.m */; };
 		50F5BBD224975D0500332F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F5BBBA24975D0500332F9E /* Assets.xcassets */; };
@@ -26,6 +22,7 @@
 		50F5BBDB24975D0500332F9E /* PropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5BBCD24975D0500332F9E /* PropertiesViewController.m */; };
 		50F5BBDC24975D0500332F9E /* CameraDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5BBCF24975D0500332F9E /* CameraDiscoveryViewController.m */; };
 		50F5BBDE24975D6F00332F9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50F5BBDD24975D6F00332F9E /* LaunchScreen.storyboard */; };
+		ABDCCFAA267CB97F00E09C8C /* CascableCoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,8 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50C3C8AE1EA78AF0006A5766 /* CascableCore.framework in Copy Frameworks */,
-				5040A85D1FFE3345004B8516 /* StopKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,12 +39,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5040A85B1FFE3342004B8516 /* StopKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StopKit.framework; path = Vendor/CascableCore/Binaries/iOS/StopKit.framework; sourceTree = SOURCE_ROOT; };
 		50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CascableCore iOS Demo (Obj-C).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C3C8901EA78567006A5766 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50C3C8911EA78567006A5766 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		50C3C8971EA78567006A5766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CascableCore.framework; path = Vendor/CascableCore/Binaries/iOS/CascableCore.framework; sourceTree = SOURCE_ROOT; };
 		50C3C8AF1EA78DFC006A5766 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Macros.h; path = "CascableCore iOS Demo (Obj-C)/Macros.h"; sourceTree = "<group>"; };
 		50C3C8B01EA79936006A5766 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		50EA4F141FC5A80900F4395A /* CascableCoreLicense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CascableCoreLicense.m; sourceTree = "<group>"; };
@@ -83,8 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50C3C8AD1EA78AE9006A5766 /* CascableCore.framework in Frameworks */,
-				5040A85C1FFE3342004B8516 /* StopKit.framework in Frameworks */,
+				ABDCCFAA267CB97F00E09C8C /* CascableCoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +115,6 @@
 				50F5BBC924975D0500332F9E /* Camera Properties */,
 				50F5BBBD24975D0500332F9E /* File System */,
 				50F5BBB924975D0500332F9E /* Supporting Files */,
-				5040A85B1FFE3342004B8516 /* StopKit.framework */,
-				50C3C8AC1EA78AE9006A5766 /* CascableCore.framework */,
 			);
 			path = "CascableCore iOS Demo (Obj-C)";
 			sourceTree = "<group>";
@@ -210,6 +200,9 @@
 			dependencies = (
 			);
 			name = "CascableCore iOS Demo (Obj-C)";
+			packageProductDependencies = (
+				ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */,
+			);
 			productName = "CascableCore iOS Demo (Obj-C)";
 			productReference = 50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */;
 			productType = "com.apple.product-type.application";
@@ -220,7 +213,7 @@
 		50C3C8801EA78529006A5766 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Cascable AB";
 				TargetAttributes = {
 					50C3C8891EA78567006A5766 = {
@@ -239,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 50C3C87F1EA78529006A5766;
+			packageReferences = (
+				ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */,
+			);
 			productRefGroup = 50C3C88B1EA78567006A5766 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,6 +307,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -345,6 +342,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -392,10 +390,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(PROJECT_DIR)/Vendor/CascableCore/Binaries/iOS\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -412,7 +406,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "CascableCore iOS Demo (Obj-C)/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = se.cascable.CascableCoreiOSDemo;
@@ -453,10 +450,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(PROJECT_DIR)/Vendor/CascableCore/Binaries/iOS\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -467,7 +460,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "CascableCore iOS Demo (Obj-C)/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = se.cascable.CascableCoreiOSDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +495,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cascable/cascablecore-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */;
+			productName = CascableCoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50C3C8801EA78529006A5766 /* Project object */;
 }

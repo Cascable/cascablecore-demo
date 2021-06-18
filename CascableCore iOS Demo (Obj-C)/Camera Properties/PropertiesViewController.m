@@ -11,16 +11,13 @@
 
 @interface PropertiesViewController ()
 @property (nonatomic, readwrite) id <CBLCamera> camera;
-@property (nonatomic, readwrite, copy) NSArray <id <CBLPropertyProxy>> *properties;
+@property (nonatomic, readwrite, copy) NSArray <id <CBLCameraProperty>> *properties;
 @end
 
 @implementation PropertiesViewController
 
 -(void)setupUIForCamera:(id <CBLCamera>)camera {
     self.camera = camera;
-
-    // This example exlusively uses property proxies, which are a helper class for dealing with
-    // camera properties.
 
     NSArray *identifiers = @[@(CBLPropertyIdentifierAperture),
                              @(CBLPropertyIdentifierAutoExposureMode),
@@ -37,10 +34,8 @@
     NSMutableArray *propertyProxies = [NSMutableArray new];
 
     for (NSNumber *wrappedIdentifier in identifiers) {
-        id <CBLPropertyProxy> proxy = [self.camera proxyForProperty:wrappedIdentifier.unsignedIntegerValue];
-        if (proxy != nil) {
-            [propertyProxies addObject:proxy];
-        }
+        id <CBLCameraProperty> proxy = [self.camera propertyWithIdentifier:wrappedIdentifier.unsignedIntegerValue];
+        if (proxy != nil) { [propertyProxies addObject:proxy]; }
     }
 
     self.properties = propertyProxies;
@@ -52,8 +47,9 @@
 
     // The exception to this, though, is cameras that support remote control without live view.
 
-    // We don't need to do anything once live view is active - CBLPropertyProxy objects will pick up all changes
-    // to property values, even if the value was nil before enabling live view. For the UI, our table cells are observing value changes individually.
+    // We don't need to do anything once live view is active - CBLCameraProperty objects will pick up all changes
+    // to property values, even if the value was nil before enabling live view. For the UI, our table cells are observing
+    // value changes individually.
 
     if (!self.camera.liveViewStreamActive && ![self.camera supportsFunctionality:CBLCameraSupportedFunctionalityRemoteControlWithoutLiveView]) {
 

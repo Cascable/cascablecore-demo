@@ -11,6 +11,6 @@
 
 @interface PropertyCell : UITableViewCell
 
-@property (nonatomic, readwrite) id <CBLPropertyProxy> property;
+@property (nonatomic, readwrite) id <CBLCameraProperty> property;
 
 @end
