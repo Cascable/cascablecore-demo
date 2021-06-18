@@ -1,6 +1,6 @@
 # CascableCore Demo
 
-CascableCore is a commercial SDK for communicating with Wi-Fi enabled cameras from Canon, Fujifilm, Nikon, Olympus, Panasonic, and Sony. It provides a powerful yet easy-to-use API that supports all cameras — write code once, and you support over 100 different camera models!
+CascableCore is a commercial SDK for communicating with Wi-Fi enabled cameras from Canon, Fujifilm, Nikon, Olympus, Panasonic, and Sony. It provides a powerful yet easy-to-use API that supports all cameras — write code once, and you support over 200 different camera models!
 
 This project is a demonstration of some of the basic features of CascableCore, including:
 
@@ -14,14 +14,15 @@ This project is a demonstration of some of the basic features of CascableCore, i
 
 For a more thorough example of what CascableCore can do, see our apps at [http://cascable.se](http://cascable.se) — they're built with the same CascableCore available here.
 
-For a more detailed overview of the CascableCore APIs, see the documentation in the [CascableCore Binaries](http://github.com/cascable/cascablecore-binaries/) repository.
+For a more detailed overview of the CascableCore APIs, see the documentation in the [CascableCore Distribution](https://github.com/cascable/cascablecore-distribution) and [CascableCoreSwift](https://github.com/cascable/cascablecore-swift) repositories.
 
 ### Getting Started
 
-- First, close this repo to your local machine.
-- Next, run `git submodule update --init --recursive` inside the project directory. This will check out the CascableCore binary. 
+- First, clone this repo to your local machine.
 
-**Note:** You need `git-lfs` installed and configured on your development machine in order to check out CascableCore.
+- Next, open the project in Xcode 12.5 or later. If Xcode doesn't update the CascableCore packages automatically, choose File -> Swift Packages -> Resolve Package Versions.
+
+- Build and run the project.
 
 ### Getting a Trial License
 
