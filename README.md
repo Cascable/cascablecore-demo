@@ -30,6 +30,16 @@ If you're interested in licensing CascableCore, head over to our [developer site
 
 Once you have your evaluation license, replace the `CascableCoreLicense.h` and `CascableCoreLicense.m` files with it and the project will compile.
 
+
+### Additional Resources
+
+- Our [Getting Started With CascableCore](https://github.com/Cascable/cascablecore-demo/blob/master/Getting%20Started%20With%20CascableCore.md) document contains discussion about the CascableCore APIs and concepts in the order in which you're likely to encounter them. These APIs and concepts are equally important for both Objective-C and Swift developers.
+
+- API reference documentation for CascableCore can be found [here](https://cascable.github.io).
+
+- If you're using CascableCore with Swift, we recommend that you use [CascableCoreSwift](https://github.com/Cascable/cascablecore-swift), which adds a number of Swift-only APIs to CascableCore that make working with it easier.
+
+
 ### License 
 
 This sample project is licensed under the MIT open source license, which means you can use the code in your own projects as long you provide attribution back to Cascable AB. 
