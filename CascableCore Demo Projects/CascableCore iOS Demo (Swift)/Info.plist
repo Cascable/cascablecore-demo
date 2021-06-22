@@ -28,6 +28,13 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Cascable needs access to the local network in order to communicate with cameras over WiFi.</string>
 	<key>NSBonjourServices</key>
 	<array>
 		<string>_ptp._tcp</string>
