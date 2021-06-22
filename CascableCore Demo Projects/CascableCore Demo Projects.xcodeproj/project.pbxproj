@@ -86,6 +86,7 @@
 		50C3C87F1EA78529006A5766 = {
 			isa = PBXGroup;
 			children = (
+				ABDCCFAB2681DEC700E09C8C /* Shared Resources */,
 				50C3C8AF1EA78DFC006A5766 /* Macros.h */,
 				50C3C88C1EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */,
 				50C3C88B1EA78567006A5766 /* Products */,
@@ -108,7 +109,6 @@
 				50EA4F151FC5A80900F4395A /* CascableCoreLicense.h */,
 				50EA4F141FC5A80900F4395A /* CascableCoreLicense.m */,
 				50C3C8B01EA79936006A5766 /* CameraViewController.h */,
-				50C3C8961EA78567006A5766 /* Main.storyboard */,
 				50F5BBCE24975D0500332F9E /* Camera Discovery */,
 				50F5BBB624975D0500332F9E /* Main Screen */,
 				50F5BBC424975D0500332F9E /* Live View and Shooting */,
@@ -181,6 +181,14 @@
 				50F5BBCF24975D0500332F9E /* CameraDiscoveryViewController.m */,
 			);
 			path = "Camera Discovery";
+			sourceTree = "<group>";
+		};
+		ABDCCFAB2681DEC700E09C8C /* Shared Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50C3C8961EA78567006A5766 /* Main.storyboard */,
+			);
+			path = "Shared Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
