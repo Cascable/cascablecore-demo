@@ -23,6 +23,22 @@
 		50F5BBDC24975D0500332F9E /* CameraDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5BBCF24975D0500332F9E /* CameraDiscoveryViewController.m */; };
 		50F5BBDE24975D6F00332F9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50F5BBDD24975D6F00332F9E /* LaunchScreen.storyboard */; };
 		ABDCCFAA267CB97F00E09C8C /* CascableCoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */; };
+		ABDCCFB32681E0A600E09C8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFB22681E0A600E09C8C /* AppDelegate.swift */; };
+		ABDCCFBF2681E0A700E09C8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABDCCFBD2681E0A700E09C8C /* LaunchScreen.storyboard */; };
+		ABDCCFC42681E0C700E09C8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C8961EA78567006A5766 /* Main.storyboard */; };
+		ABDCCFC52681E0CB00E09C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50F5BBBA24975D0500332F9E /* Assets.xcassets */; };
+		ABDCCFC72681E1B200E09C8C /* CascableCoreLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFC62681E1B200E09C8C /* CascableCoreLicense.swift */; };
+		ABDCCFCA2681E2B300E09C8C /* CameraDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFC92681E2B300E09C8C /* CameraDiscoveryViewController.swift */; };
+		ABDCCFCC2681F17700E09C8C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFCB2681F17700E09C8C /* CameraViewController.swift */; };
+		ABDCCFCF2681F21600E09C8C /* CascableCoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABDCCFCE2681F21600E09C8C /* CascableCoreSwift */; };
+		ABDCCFD22681F39A00E09C8C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFD12681F39A00E09C8C /* MainScreenViewController.swift */; };
+		ABDCCFD52681FCF400E09C8C /* LiveViewAndShootingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFD42681FCF400E09C8C /* LiveViewAndShootingViewController.swift */; };
+		ABDCCFD7268204A100E09C8C /* ShotPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFD6268204A100E09C8C /* ShotPreviewViewController.swift */; };
+		ABDCCFDA268219D200E09C8C /* PropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFD9268219D200E09C8C /* PropertyCell.swift */; };
+		ABDCCFDC268221BE00E09C8C /* PropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFDB268221BE00E09C8C /* PropertiesViewController.swift */; };
+		ABDCCFDF2682280500E09C8C /* CameraFileScanning.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFDE2682280500E09C8C /* CameraFileScanning.swift */; };
+		ABDCCFE126822D6300E09C8C /* FilesystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFE026822D6300E09C8C /* FilesystemViewController.swift */; };
+		ABDCCFE326822FCB00E09C8C /* FilesystemItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDCCFE226822FCB00E09C8C /* FilesystemItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +59,7 @@
 		50C3C8901EA78567006A5766 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50C3C8911EA78567006A5766 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		50C3C8971EA78567006A5766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		50C3C8AF1EA78DFC006A5766 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Macros.h; path = "CascableCore iOS Demo (Obj-C)/Macros.h"; sourceTree = "<group>"; };
+		50C3C8AF1EA78DFC006A5766 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		50C3C8B01EA79936006A5766 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		50EA4F141FC5A80900F4395A /* CascableCoreLicense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CascableCoreLicense.m; sourceTree = "<group>"; };
 		50EA4F151FC5A80900F4395A /* CascableCoreLicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CascableCoreLicense.h; sourceTree = "<group>"; };
@@ -69,6 +85,22 @@
 		50F5BBCF24975D0500332F9E /* CameraDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDiscoveryViewController.m; sourceTree = "<group>"; };
 		50F5BBD024975D0500332F9E /* CameraDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDiscoveryViewController.h; sourceTree = "<group>"; };
 		50F5BBDD24975D6F00332F9E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABDCCFB02681E0A600E09C8C /* CascableCore iOS Demo (Swift).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CascableCore iOS Demo (Swift).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABDCCFB22681E0A600E09C8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ABDCCFBE2681E0A700E09C8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ABDCCFC02681E0A700E09C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABDCCFC62681E1B200E09C8C /* CascableCoreLicense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CascableCoreLicense.swift; sourceTree = "<group>"; };
+		ABDCCFC92681E2B300E09C8C /* CameraDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDiscoveryViewController.swift; sourceTree = "<group>"; };
+		ABDCCFCB2681F17700E09C8C /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		ABDCCFD12681F39A00E09C8C /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		ABDCCFD42681FCF400E09C8C /* LiveViewAndShootingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewAndShootingViewController.swift; sourceTree = "<group>"; };
+		ABDCCFD6268204A100E09C8C /* ShotPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotPreviewViewController.swift; sourceTree = "<group>"; };
+		ABDCCFD9268219D200E09C8C /* PropertyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCell.swift; sourceTree = "<group>"; };
+		ABDCCFDB268221BE00E09C8C /* PropertiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesViewController.swift; sourceTree = "<group>"; };
+		ABDCCFDE2682280500E09C8C /* CameraFileScanning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFileScanning.swift; sourceTree = "<group>"; };
+		ABDCCFE026822D6300E09C8C /* FilesystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesystemViewController.swift; sourceTree = "<group>"; };
+		ABDCCFE226822FCB00E09C8C /* FilesystemItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesystemItemCell.swift; sourceTree = "<group>"; };
+		ABDCCFEF2682388600E09C8C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,16 +112,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABDCCFAD2681E0A600E09C8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABDCCFCF2681F21600E09C8C /* CascableCoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		50C3C87F1EA78529006A5766 = {
 			isa = PBXGroup;
 			children = (
+				ABDCCFEF2682388600E09C8C /* README.md */,
 				ABDCCFAB2681DEC700E09C8C /* Shared Resources */,
-				50C3C8AF1EA78DFC006A5766 /* Macros.h */,
 				50C3C88C1EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */,
+				ABDCCFB12681E0A600E09C8C /* CascableCore iOS Demo (Swift) */,
 				50C3C88B1EA78567006A5766 /* Products */,
+				ABDCCFCD2681F21600E09C8C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */,
+				ABDCCFB02681E0A600E09C8C /* CascableCore iOS Demo (Swift).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +147,7 @@
 		50C3C88C1EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */ = {
 			isa = PBXGroup;
 			children = (
+				50C3C8AF1EA78DFC006A5766 /* Macros.h */,
 				50C3C8901EA78567006A5766 /* AppDelegate.h */,
 				50C3C8911EA78567006A5766 /* AppDelegate.m */,
 				50EA4F151FC5A80900F4395A /* CascableCoreLicense.h */,
@@ -132,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				50F5BBDD24975D6F00332F9E /* LaunchScreen.storyboard */,
-				50F5BBBA24975D0500332F9E /* Assets.xcassets */,
 				50F5BBBB24975D0500332F9E /* main.m */,
 				50F5BBBC24975D0500332F9E /* Info.plist */,
 			);
@@ -187,8 +230,77 @@
 			isa = PBXGroup;
 			children = (
 				50C3C8961EA78567006A5766 /* Main.storyboard */,
+				50F5BBBA24975D0500332F9E /* Assets.xcassets */,
 			);
 			path = "Shared Resources";
+			sourceTree = "<group>";
+		};
+		ABDCCFB12681E0A600E09C8C /* CascableCore iOS Demo (Swift) */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFB22681E0A600E09C8C /* AppDelegate.swift */,
+				ABDCCFC62681E1B200E09C8C /* CascableCoreLicense.swift */,
+				ABDCCFCB2681F17700E09C8C /* CameraViewController.swift */,
+				ABDCCFC82681E29300E09C8C /* Camera Discovery */,
+				ABDCCFD02681F38700E09C8C /* Main Screen */,
+				ABDCCFD32681FCCF00E09C8C /* Live View and Shooting */,
+				ABDCCFD8268219C200E09C8C /* Camera Properties */,
+				ABDCCFDD268227F100E09C8C /* File System */,
+				ABDCCFBD2681E0A700E09C8C /* LaunchScreen.storyboard */,
+				ABDCCFC02681E0A700E09C8C /* Info.plist */,
+			);
+			path = "CascableCore iOS Demo (Swift)";
+			sourceTree = "<group>";
+		};
+		ABDCCFC82681E29300E09C8C /* Camera Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFC92681E2B300E09C8C /* CameraDiscoveryViewController.swift */,
+			);
+			path = "Camera Discovery";
+			sourceTree = "<group>";
+		};
+		ABDCCFCD2681F21600E09C8C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABDCCFD02681F38700E09C8C /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFD12681F39A00E09C8C /* MainScreenViewController.swift */,
+			);
+			path = "Main Screen";
+			sourceTree = "<group>";
+		};
+		ABDCCFD32681FCCF00E09C8C /* Live View and Shooting */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFD42681FCF400E09C8C /* LiveViewAndShootingViewController.swift */,
+				ABDCCFD6268204A100E09C8C /* ShotPreviewViewController.swift */,
+			);
+			path = "Live View and Shooting";
+			sourceTree = "<group>";
+		};
+		ABDCCFD8268219C200E09C8C /* Camera Properties */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFD9268219D200E09C8C /* PropertyCell.swift */,
+				ABDCCFDB268221BE00E09C8C /* PropertiesViewController.swift */,
+			);
+			path = "Camera Properties";
+			sourceTree = "<group>";
+		};
+		ABDCCFDD268227F100E09C8C /* File System */ = {
+			isa = PBXGroup;
+			children = (
+				ABDCCFE026822D6300E09C8C /* FilesystemViewController.swift */,
+				ABDCCFE226822FCB00E09C8C /* FilesystemItemCell.swift */,
+				ABDCCFDE2682280500E09C8C /* CameraFileScanning.swift */,
+			);
+			path = "File System";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,12 +327,33 @@
 			productReference = 50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */;
 			productType = "com.apple.product-type.application";
 		};
+		ABDCCFAF2681E0A600E09C8C /* CascableCore iOS Demo (Swift) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABDCCFC12681E0A700E09C8C /* Build configuration list for PBXNativeTarget "CascableCore iOS Demo (Swift)" */;
+			buildPhases = (
+				ABDCCFAC2681E0A600E09C8C /* Sources */,
+				ABDCCFAD2681E0A600E09C8C /* Frameworks */,
+				ABDCCFAE2681E0A600E09C8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CascableCore iOS Demo (Swift)";
+			packageProductDependencies = (
+				ABDCCFCE2681F21600E09C8C /* CascableCoreSwift */,
+			);
+			productName = "CascableCore iOS Demo (Swift)";
+			productReference = ABDCCFB02681E0A600E09C8C /* CascableCore iOS Demo (Swift).app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		50C3C8801EA78529006A5766 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Cascable AB";
 				TargetAttributes = {
@@ -229,9 +362,12 @@
 						DevelopmentTeam = EB5BP6YJ4R;
 						ProvisioningStyle = Automatic;
 					};
+					ABDCCFAF2681E0A600E09C8C = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
-			buildConfigurationList = 50C3C8831EA78529006A5766 /* Build configuration list for PBXProject "CascableCore Demo" */;
+			buildConfigurationList = 50C3C8831EA78529006A5766 /* Build configuration list for PBXProject "CascableCore Demo Projects" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -248,6 +384,7 @@
 			projectRoot = "";
 			targets = (
 				50C3C8891EA78567006A5766 /* CascableCore iOS Demo (Obj-C) */,
+				ABDCCFAF2681E0A600E09C8C /* CascableCore iOS Demo (Swift) */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +397,16 @@
 				50F5BBD224975D0500332F9E /* Assets.xcassets in Resources */,
 				50F5BBDE24975D6F00332F9E /* LaunchScreen.storyboard in Resources */,
 				50C3C8981EA78567006A5766 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABDCCFAE2681E0A600E09C8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABDCCFBF2681E0A700E09C8C /* LaunchScreen.storyboard in Resources */,
+				ABDCCFC42681E0C700E09C8C /* Main.storyboard in Resources */,
+				ABDCCFC52681E0CB00E09C8C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +432,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABDCCFAC2681E0A600E09C8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABDCCFD22681F39A00E09C8C /* MainScreenViewController.swift in Sources */,
+				ABDCCFE126822D6300E09C8C /* FilesystemViewController.swift in Sources */,
+				ABDCCFDF2682280500E09C8C /* CameraFileScanning.swift in Sources */,
+				ABDCCFE326822FCB00E09C8C /* FilesystemItemCell.swift in Sources */,
+				ABDCCFB32681E0A600E09C8C /* AppDelegate.swift in Sources */,
+				ABDCCFDA268219D200E09C8C /* PropertyCell.swift in Sources */,
+				ABDCCFCC2681F17700E09C8C /* CameraViewController.swift in Sources */,
+				ABDCCFC72681E1B200E09C8C /* CascableCoreLicense.swift in Sources */,
+				ABDCCFD7268204A100E09C8C /* ShotPreviewViewController.swift in Sources */,
+				ABDCCFD52681FCF400E09C8C /* LiveViewAndShootingViewController.swift in Sources */,
+				ABDCCFCA2681E2B300E09C8C /* CameraDiscoveryViewController.swift in Sources */,
+				ABDCCFDC268221BE00E09C8C /* PropertiesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -294,6 +460,14 @@
 				50C3C8971EA78567006A5766 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ABDCCFBD2681E0A700E09C8C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABDCCFBE2681E0A700E09C8C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -481,10 +655,100 @@
 			};
 			name = Release;
 		};
+		ABDCCFC22681E0A700E09C8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = EB5BP6YJ4R;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CascableCore iOS Demo (Swift)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = se.cascable.CascableCoreiOSDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ABDCCFC32681E0A700E09C8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = EB5BP6YJ4R;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "CascableCore iOS Demo (Swift)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = se.cascable.CascableCoreiOSDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		50C3C8831EA78529006A5766 /* Build configuration list for PBXProject "CascableCore Demo" */ = {
+		50C3C8831EA78529006A5766 /* Build configuration list for PBXProject "CascableCore Demo Projects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50C3C8841EA78529006A5766 /* Debug */,
@@ -498,6 +762,15 @@
 			buildConfigurations = (
 				50C3C8A01EA78567006A5766 /* Debug */,
 				50C3C8A11EA78567006A5766 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABDCCFC12681E0A700E09C8C /* Build configuration list for PBXNativeTarget "CascableCore iOS Demo (Swift)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABDCCFC22681E0A700E09C8C /* Debug */,
+				ABDCCFC32681E0A700E09C8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -517,6 +790,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */;
+			productName = CascableCoreSwift;
+		};
+		ABDCCFCE2681F21600E09C8C /* CascableCoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */;
 			productName = CascableCoreSwift;

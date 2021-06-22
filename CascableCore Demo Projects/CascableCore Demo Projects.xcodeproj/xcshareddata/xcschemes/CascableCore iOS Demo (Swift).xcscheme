@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50C3C8891EA78567006A5766"
-               BuildableName = "CascableCore iOS Demo (Obj-C).app"
-               BlueprintName = "CascableCore iOS Demo (Obj-C)"
+               BlueprintIdentifier = "ABDCCFAF2681E0A600E09C8C"
+               BuildableName = "CascableCore iOS Demo (Swift).app"
+               BlueprintName = "CascableCore iOS Demo (Swift)"
                ReferencedContainer = "container:CascableCore Demo Projects.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50C3C8891EA78567006A5766"
-            BuildableName = "CascableCore iOS Demo (Obj-C).app"
-            BlueprintName = "CascableCore iOS Demo (Obj-C)"
+            BlueprintIdentifier = "ABDCCFAF2681E0A600E09C8C"
+            BuildableName = "CascableCore iOS Demo (Swift).app"
+            BlueprintName = "CascableCore iOS Demo (Swift)"
             ReferencedContainer = "container:CascableCore Demo Projects.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "50C3C8891EA78567006A5766"
-            BuildableName = "CascableCore iOS Demo (Obj-C).app"
-            BlueprintName = "CascableCore iOS Demo (Obj-C)"
+            BlueprintIdentifier = "ABDCCFAF2681E0A600E09C8C"
+            BuildableName = "CascableCore iOS Demo (Swift).app"
+            BlueprintName = "CascableCore iOS Demo (Swift)"
             ReferencedContainer = "container:CascableCore Demo Projects.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

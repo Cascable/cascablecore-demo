@@ -10,6 +10,8 @@ This project is a demonstration of some of the basic features of CascableCore, i
 - Working with camera properties.
 - Iterating the camera's filesystem, loading image metadata and thumbnails.
 
+There are two separate targets in the demo project, both implementing the same app — one using Objective-C, and one using Swift.
+
 ![CascableCore Demo App Screenshots](Documentation%20Images/Screenshots.jpg?raw=true)
 
 For a more thorough example of what CascableCore can do, see our apps at [http://cascable.se](http://cascable.se) — they're built with the same CascableCore available here.
@@ -22,7 +24,7 @@ For a more detailed overview of the CascableCore APIs, see the documentation in 
 
 - Next, open the project in Xcode 12.5 or later. If Xcode doesn't update the CascableCore packages automatically, choose File -> Swift Packages -> Resolve Package Versions.
 
-- Build and run the project.
+- Build and run your target of choice.
 
 ### Getting a Trial License
 
