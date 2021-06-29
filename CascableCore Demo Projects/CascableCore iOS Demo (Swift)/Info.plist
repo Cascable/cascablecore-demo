@@ -33,6 +33,8 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>CascableCore connects to your camera via USB in order to communicate with it.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Cascable needs access to the local network in order to communicate with cameras over WiFi.</string>
 	<key>NSBonjourServices</key>
