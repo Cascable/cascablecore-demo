@@ -6,8 +6,8 @@
         "repositoryURL": "git@github.com:Cascable/cascablecore-distribution",
         "state": {
           "branch": null,
-          "revision": "b880e57274001bd92523bf2cff4af57f5b45a97a",
-          "version": "10.0.1"
+          "revision": "cb4971b83a3cf85c5560dbc954f606b27dee2097",
+          "version": "10.1.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/cascable/cascablecore-swift",
         "state": {
           "branch": null,
-          "revision": "41a339b79b9bd1b45e85d2bd6e90a1c9f7696e2b",
-          "version": "10.0.1"
+          "revision": "6a13d10f7dc72a2684a3e742b0421b501fa50756",
+          "version": "10.1.1"
         }
       }
     ]
