@@ -158,12 +158,12 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     // However, some cameras *do* allow both, so the currentCommandCategories property is actually a bitmask. To aid working with this,
     // there's APIs to query whether the camera currently allows a given command category:
 
-    // [self.camera currentCommandCategoriesContainsCategory:CBLCameraAvailableCommandCategoryRemoteShooting]
+    // [self.camera currentCommandCategoriesContainsCategory:CBLCameraAvailableCommandCategoryStillsShooting]
 
     // However, it's a harmless operation to set the command category to one that's already allowed. Therefore, to reduce
     // code paths, in this example we just set the required command category without checking if it's already available first.
 
-    NSString *categoryName = category == CBLCameraAvailableCommandCategoryRemoteShooting ? @"remote shooting" : @"filesystem access";
+    NSString *categoryName = category == CBLCameraAvailableCommandCategoryStillsShooting ? @"stills shooting" : @"filesystem access";
     NSLog(@"%@: Switching camera category to %@…", THIS_FILE, categoryName);
 
     self.view.userInteractionEnabled = NO;
@@ -206,10 +206,10 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == DemoScreenRowLiveView) {
-        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryRemoteShooting thenPerformSegue:@"liveViewShooting"];
+        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryStillsShooting thenPerformSegue:@"liveViewShooting"];
 
     } else if (indexPath.row == DemoScreenRowProperties) {
-        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryRemoteShooting thenPerformSegue:@"properties"];
+        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryStillsShooting thenPerformSegue:@"properties"];
 
     } else if (indexPath.row == DemoScreenRowFilesystem) {
         [self ensureCameraAllows:CBLCameraAvailableCommandCategoryFilesystemAccess thenPerformSegue:@"filesystem"];

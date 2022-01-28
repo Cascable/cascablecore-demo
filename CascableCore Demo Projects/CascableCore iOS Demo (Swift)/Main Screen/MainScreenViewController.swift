@@ -118,13 +118,13 @@ import CascableCoreSwift
         // However, some cameras *do* allow both, so the `currentCommandCategories` property is actually an optionset.
         // To aid working with this, there's APIs to query whether the camera currently allows a given command category:
 
-        // camera.currentCommandCategoriesContains(.remoteShooting)
+        // camera.currentCommandCategoriesContains(.stillsShooting)
 
         // However, it's a harmless operation to set the command category to one that's already allowed. Therefore, to
         // reduce code paths, in this example we just set the required command category without checking if it's
         // already available first.
 
-        let categoryName = (category == .remoteShooting ? "remote shooting" : "filesystem access")
+        let categoryName = (category == .stillsShooting ? "stills shooting" : "filesystem access")
         print("\(CurrentFileName()): Switching camera to \(categoryName)…")
 
         view.isUserInteractionEnabled = false
@@ -180,8 +180,8 @@ import CascableCoreSwift
         guard let tappedRow = DemoScreenRow(rawValue: indexPath.row) else { return }
 
         switch tappedRow {
-        case .liveView: ensureCameraAllows(.remoteShooting, thenPerform: "liveViewShooting")
-        case .properties: ensureCameraAllows(.remoteShooting, thenPerform: "properties")
+        case .liveView: ensureCameraAllows(.stillsShooting, thenPerform: "liveViewShooting")
+        case .properties: ensureCameraAllows(.stillsShooting, thenPerform: "properties")
         case .fileSystem: ensureCameraAllows(.filesystemAccess, thenPerform: "filesystem")
         }
     }
