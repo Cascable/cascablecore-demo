@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Cascable/cascablecore-distribution",
       "state" : {
-        "revision" : "ace9d5030ad3e83409b8e12599d5fdf3aed8658d",
-        "version" : "12.2.2"
+        "revision" : "c802653566e2c667845750c296ea32cc094cb376",
+        "version" : "12.2.4"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/cascable/cascablecore-swift",
       "state" : {
-        "revision" : "f8c49a7b564a52a1e44806564bae318084cd20fe",
-        "version" : "12.2.2"
+        "revision" : "4d2a4b29c47c18f8c3d9c6c2fd72be78f8251e87",
+        "version" : "12.2.4"
       }
     }
   ],
