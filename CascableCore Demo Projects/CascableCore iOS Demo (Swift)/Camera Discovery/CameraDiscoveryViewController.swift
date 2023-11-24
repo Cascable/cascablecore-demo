@@ -46,8 +46,23 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
         titleLabel.text = "Connecting…"
         print("\(CurrentFileName()): Connecting to \(camera.service.model ?? "unknown")…")
 
-        camera.connect(completionCallback: { [weak self] error, warnings in
-            guard let self = self else { return }
+        camera.connect(authenticationRequestCallback: { context in
+            // This callback will be called if connection is halted due to the camera requiring authentication of some kind.
+
+            // This and the `authenticationResolvedCallback` callback will always be called in pairs. Authentication UI
+            // should be shown to the user in this callback, then hidden (if still visible) in `authenticationResolvedCallback`.
+            // Which action should be taken by the user is defined in the `context` object. See `displayAuthenticationUI(for:)`
+            // below for examples.
+            self.displayAuthenticationUI(for: context)
+
+        }, authenticationResolvedCallback: {
+            // This callback will be called after authentication has been "resolved" - hide any displayed authentication UI.
+            self.dismissAuthenticationUI()
+
+        }, completionCallback: { [weak self] error, warnings in
+            // This is the completion callback, which will be called after the connection has successfully
+            // completed or has failed.
+            guard let self else { return }
 
             if let error = error {
                 if error.asCascableCoreError != .cancelledByUser {
@@ -59,51 +74,132 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
             } else {
                 self.transitionToMainDemoScreen(with: camera)
             }
-
-        }, userInterventionCallback: { [weak self] shouldDisplayUserInterventionDialog, cancelConnectionHandler in
-            guard let self = self else { return }
-
-            // This closure will be called if connection is halted due to the user needing to perform one or more
-            // actions on the camera itself. When this happens, you should display UI to the user telling them
-            // to look at the camera.
-
-            // This will be called either zero or two times. Zero if no user intervention is required, twice if it is — once when
-            // it's appropriate to show UI to tell the user to look at the camera (the shouldDisplayUserInterventionDialog
-            // parameter will be `true`), and once when that UI can be dismissed (the shouldDisplayUserInterventionDialog
-            // parameter will be false`).
-
-            // The cancelConnectionHandler parameter will be non-nil when shouldDisplayUserInterventionDialog is `true`,
-            // and can be called to cancel the connection and abort the pairing.
-            if shouldDisplayUserInterventionDialog {
-                self.displayPairingRequiredUI(with: cancelConnectionHandler)
-            } else {
-                self.dismissPairingRequiredUI()
-            }
         })
     }
 
-    private var pairingAlert: UIAlertController? = nil
+    private var authenticationAlert: UIAlertController? = nil
 
-    func displayPairingRequiredUI(with cancelConnection: (() -> Void)?) {
+    func displayAuthenticationUI(for context: CameraAuthenticationContext) {
+
+        // What we display to the user depends on which kind of authentication the camera wants. Currently,
+        // there are three kinds:
+        //
+        // - "Interact with camera" means that the only thing you can do is cancel the connection. The user must
+        //   physically interact with the camera to approve the connection.
+        //
+        // - "Username and password" means that a username and password should be collected and submitted.
+        //
+        // - "Four digit code" means that a four digic numeric code should be collected and submitted.
+
+        switch context.type {
+        case .interactWithCamera: presentInteractWithCameraAuthenticationUI(for: context)
+        case .usernameAndPassword: presentUsernameAndPasswordAuthenticationUI(for: context)
+        case .fourDigitNumericCode: presentFourDigitNumericCodeAuthenticationUI(for: context)
+        @unknown default: fatalError("Got unknown camera authentication type!")
+        }
+    }
+
+    func presentInteractWithCameraAuthenticationUI(for context: CameraAuthenticationContext) {
+        // Here, we display an authentication alert instructing the user to interact with the camera to continue.
+        // When the user does so, the `authenticationResolvedCallback` given to the camera's connection invocation
+        // will be called.
 
         let alert = UIAlertController(title: "Pairing Required!",
                                       message: "Please follow the instructions on your camera's screen to continue.",
                                       preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Cancel Connection", style: .cancel, handler: { [weak self] _ in
-            cancelConnection?()
-            self?.dismissPairingRequiredUI()
+        alert.addAction(UIAlertAction(title: "Disconnect", style: .cancel, handler: { [weak self] _ in
+            self?.dismissAuthenticationUI()
+            context.submitCancellation()
         }))
 
-        pairingAlert = alert
-        present(alert, animated: true, completion: nil)
+        authenticationAlert = alert
+        present(alert, animated: true)
     }
 
-    func dismissPairingRequiredUI() {
-        guard let alert = pairingAlert else { return }
-        alert.dismiss(animated: true) { [weak self] in
-            self?.pairingAlert = nil
-        }
+    func presentUsernameAndPasswordAuthenticationUI(for context: CameraAuthenticationContext) {
+        // Here, we display an authentication alert asking for a username and password, which we then submit to the camera
+        // via the given authentication context. When the user does so, the `authenticationResolvedCallback` given to the
+        // camera's connection invocation will be called.
+
+        // Some cameras let us try again if incorrect details were submitted.
+        let previousAttemptFailed = context.previousSubmissionRejected
+
+        let alert = UIAlertController(title: previousAttemptFailed ? "Incorrect Username/Password" : "Authentication Required",
+                                      message: "Please enter your camera's username and password.",
+                                      preferredStyle: .alert)
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Username"
+        })
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        })
+
+        alert.addAction(UIAlertAction(title: "Disconnect", style: .cancel, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            self?.dismissAuthenticationUI()
+            context.submitCancellation()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            let userName = alert.textFields?.first?.text ?? ""
+            let password = alert.textFields?.last?.text ?? ""
+            self?.dismissAuthenticationUI()
+            context.submitUserName(userName, password: password)
+        }))
+
+        authenticationAlert = alert
+        present(alert, animated: true)
+    }
+
+    func presentFourDigitNumericCodeAuthenticationUI(for context: CameraAuthenticationContext) {
+        // Here, we display an authentication alert asking for a four-digit code, which we then submit to the camera
+        // via the given authentication context. When the user does so, the `authenticationResolvedCallback` given to the
+        // camera's connection invocation will be called.
+
+        // Some cameras let us try again if incorrect details were submitted.
+        let previousAttemptFailed = context.previousSubmissionRejected
+
+        let alert = UIAlertController(title: previousAttemptFailed ? "Incorrect Passcode" : "Authentication Required",
+                                      message: "Please enter your camera's passcode.",
+                                      preferredStyle: .alert)
+
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "Passcode"
+            textField.isSecureTextEntry = true
+            textField.keyboardType = .numberPad
+        })
+
+        alert.addAction(UIAlertAction(title: "Disconnect", style: .cancel, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            self?.dismissAuthenticationUI()
+            context.submitCancellation()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            let code = alert.textFields?.first?.text ?? ""
+            self?.dismissAuthenticationUI()
+            context.submitNumericCode(code)
+        }))
+
+        authenticationAlert = alert
+        present(alert, animated: true)
+    }
+
+    func dismissAuthenticationUI() {
+        // This can be called either from our own UI methods or from the `authenticationResolvedCallback` during connection.
+        guard let authenticationAlert else { return }
+        authenticationAlert.dismiss(animated: true)
+        self.authenticationAlert = nil
     }
 
     // MARK: - Connection UI

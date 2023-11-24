@@ -5,12 +5,12 @@ CascableCore is a commercial SDK for communicating with Wi-Fi enabled cameras fr
 This project is a demonstration of some of the basic features of CascableCore, including:
 
 - Camera discovery and connection.
-- Handling on-camera pairing prompts and unexpected disconnects.
+- Handling camera authentication prompts and unexpected disconnects.
 - Showing the camera's viewfinder image stream, taking shots and displaying shot previews.
 - Working with camera properties.
 - Iterating the camera's filesystem, loading image metadata and thumbnails.
 
-There are two separate targets in the demo project, both implementing the same app — one using Objective-C, and one using Swift.
+There are two separate iOS app targets in the demo project, both implementing the same app — one using Objective-C, and one using Swift. These targets can be built and run on iOS devices, the iOS simulator, and on the Mac via Catalyst. Note that connecting to cameras via USB isn't supported in the iOS simulator.
 
 ![CascableCore Demo App Screenshots](Documentation%20Images/Screenshots.jpg?raw=true)
 
@@ -22,7 +22,7 @@ For a more detailed overview of the CascableCore APIs, see the documentation in 
 
 - First, clone this repo to your local machine.
 
-- Next, open the project in Xcode 12.5 or later. If Xcode doesn't update the CascableCore packages automatically, choose File -> Swift Packages -> Resolve Package Versions.
+- Next, open the project in Xcode 15.0 or later. If Xcode doesn't update the CascableCore packages automatically, choose File -> Swift Packages -> Resolve Package Versions.
 
 - Build and run your target of choice.
 
@@ -30,7 +30,7 @@ For a more detailed overview of the CascableCore APIs, see the documentation in 
 
 If you're interested in licensing CascableCore, head over to our [developer site](http://developer.cascable.se) and sign up for an account. From there you can fill out a request for an evaluation license — if we think CascableCore is a good fit for you, we'll send you an evaluation license.
 
-Once you have your evaluation license, replace the `CascableCoreLicense.h` and `CascableCoreLicense.m` files with it and the project will compile.
+Once you have your evaluation license, replace the `CascableCoreLicense.h`, `CascableCoreLicense.m`, and `CascableCoreLicense.swift` files with it and the project will compile.
 
 
 ### Additional Resources

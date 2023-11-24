@@ -13,7 +13,7 @@
 
 @interface CameraDiscoveryViewController () <CBLCameraDiscoveryDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (nonatomic, nullable) UIAlertController *pairingAlert;
+@property (nonatomic, nullable) UIAlertController *authenticationAlert;
 @property (nonatomic, nullable) id <CBLCamera> lastConnectedCamera;
 @end
 
@@ -52,8 +52,22 @@
     self.titleLabel.text = @"Connecting…";
     NSLog(@"%@: Connecting to %@…", THIS_FILE, camera.service.model);
 
-    [camera connectWithCompletionCallback:^(NSError * _Nullable error, NSArray<id<CBLCameraConnectionWarning>> * _Nullable warnings) {
+    [camera connectWithAuthenticationRequestCallback:^(id <CBLCameraAuthenticationContext> _Nonnull context) {
+        // This block will be called if connection is halted due to the camera requiring authentication of some kind.
 
+        // This and the `authenticationResolvedCallback` callback will always be called in pairs. Authentication UI
+        // should be shown to the user in this callback, then hidden (if still visible) in `authenticationResolvedCallback`.
+        // Which action should be taken by the user is defined in the `context` object. See `-displayAuthenticationUI:`
+        // below for examples.
+        [self displayAuthenticationUI:context];
+
+    } authenticationResolvedCallback:^{
+        // This block will be called after authentication has been "resolved" - hide any displayed authentication UI.
+        [self dismissAuthenticationUI];
+
+    } completionCallback:^(NSError * _Nullable error, NSArray <id <CBLCameraConnectionWarning>> * _Nullable warnings) {
+        // This is the completion block, which will be called after the connection has successfully
+        // completed or has failed.
         if (error != nil) {
             if (error.code != CBLErrorCodeCancelledByUser) {
                 // If the user cancelled, don't display an error.
@@ -64,54 +78,145 @@
         } else {
             [self transitionToMainDemoScreenWithCamera:camera];
         }
-
-    } userInterventionCallback:^(BOOL shouldDisplayUserInterventionDialog, dispatch_block_t _Nullable cancelConnectionBlock) {
-        // This block will be called if connection is halted due to the user needing to perform one or more
-        // actions on the camera itself. When this happens, you should display UI to the user telling them
-        // to look at the camera.
-
-        // This will be called either zero or two times. Zero if no user intervention is required, twice if it is — once when
-        // it's appropriate to show UI to tell the user to look at the camera (the shouldDisplayUserInterventionDialog
-        // parameter will be `YES`), and once when that UI can be dismissed (the shouldDisplayUserInterventionDialog
-        // parameter will be `NO`).
-
-        // The cancelConnectionBlock parameter will be non-nil when shouldDisplayUserInterventionDialog is `YES`,
-        // and can be called to cancel the connection and abort the pairing.
-
-        if (shouldDisplayUserInterventionDialog) {
-            [self displayPairingRequiredUI:cancelConnectionBlock];
-        } else {
-            [self dismissPairingRequiredUI];
-        }
     }];
 
 }
 
--(void)displayPairingRequiredUI:(dispatch_block_t)cancelConnection {
+-(void)displayAuthenticationUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
 
+    // What we display to the user depends on which kind of authentication the camera wants. Currently,
+    // there are three kinds:
+    //
+    // - "Interact with camera" means that the only thing you can do is cancel the connection. The user must
+    //   physically interact with the camera to approve the connection.
+    //
+    // - "Username and password" means that a username and password should be collected and submitted.
+    //
+    // - "Four digit code" means that a four digic numeric code should be collected and submitted.
+
+    switch (authenticationContext.type) {
+        case CBLCameraAuthenticationTypeInteractWithCamera:
+            [self presentInteractWithCameraAuthenticationUI:authenticationContext];
+            break;
+
+        case CBLCameraAuthenticationTypeUsernameAndPassword:
+            [self presentUsernameAndPasswordAuthenticationUI:authenticationContext];
+            break;
+
+        case CBLCameraAuthenticationTypeFourDigitNumericCode:
+            [self presentFourDigitNumericCodeAuthenticationUI:authenticationContext];
+            break;
+    }
+}
+
+-(void)presentInteractWithCameraAuthenticationUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
+    // Here, we display an authentication alert instructing the user to interact with the camera to continue.
+    // When the user does so, the `authenticationResolvedCallback` given to the camera's connection invocation
+    // will be called.
     UIAlertController *alert =
     [UIAlertController alertControllerWithTitle:@"Pairing Required!"
                                         message:@"Please follow the instructions on your camera's screen to continue."
                                  preferredStyle:UIAlertControllerStyleAlert];
 
-    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel Connection" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-        cancelConnection();
-        [self dismissPairingRequiredUI];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Disconnect" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        [self dismissAuthenticationUI];
+        [authenticationContext submitCancellation];
     }]];
 
-    self.pairingAlert = alert;
+    self.authenticationAlert = alert;
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)dismissPairingRequiredUI {
+-(void)presentUsernameAndPasswordAuthenticationUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
+    // Here, we display an authentication alert asking for a username and password, which we then submit to the camera
+    // via the given authentication context. When the user does so, the `authenticationResolvedCallback` given to the
+    // camera's connection invocation will be called.
 
-    if (self.pairingAlert == nil) {
-        return;
-    }
+    // Some cameras let us try again if incorrect details were submitted.
+    BOOL previousAttemptFailed = authenticationContext.previousSubmissionRejected;
 
-    [self.pairingAlert dismissViewControllerAnimated:YES completion:^{
-        self.pairingAlert = nil;
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:previousAttemptFailed ? @"Incorrect Username/Password" : @"Authentication Required"
+                                        message:@"Please enter your camera's username and password."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Username";
     }];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Password";
+        textField.secureTextEntry = YES;
+    }];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"Disconnect" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        [self dismissAuthenticationUI];
+        [authenticationContext submitCancellation];
+    }]];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        NSString *userName = alert.textFields.firstObject.text;
+        if (userName == nil) { userName = @""; }
+        NSString *password = [alert.textFields objectAtIndex:1].text;
+        if (password == nil) { password = @""; }
+        [self dismissAuthenticationUI];
+        [authenticationContext submitUserName:userName password:password];
+    }]];
+
+    self.authenticationAlert = alert;
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)presentFourDigitNumericCodeAuthenticationUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
+    // Here, we display an authentication alert asking for a four-digit code, which we then submit to the camera
+    // via the given authentication context. When the user does so, the `authenticationResolvedCallback` given to the
+    // camera's connection invocation will be called.
+
+    // Some cameras let us try again if incorrect details were submitted.
+    BOOL previousAttemptFailed = authenticationContext.previousSubmissionRejected;
+
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:previousAttemptFailed ? @"Incorrect Passcode" : @"Authentication Required"
+                                        message:@"Please enter your camera's passcode."
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Passcode";
+        textField.secureTextEntry = YES;
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"Disconnect" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        [self dismissAuthenticationUI];
+        [authenticationContext submitCancellation];
+    }]];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        NSString *code = alert.textFields.firstObject.text;
+        if (code == nil) { code = @""; }
+        [self dismissAuthenticationUI];
+        [authenticationContext submitNumericCode:code];
+    }]];
+
+    self.authenticationAlert = alert;
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)dismissAuthenticationUI {
+    // This can be called either from our own UI methods or from the `authenticationResolvedCallback` during connection.
+    if (self.authenticationAlert == nil) { return; }
+    [self.authenticationAlert dismissViewControllerAnimated:YES completion:^{}];
+    self.authenticationAlert = nil;
 }
 
 #pragma mark - Connection UI
