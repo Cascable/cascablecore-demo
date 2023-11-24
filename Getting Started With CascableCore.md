@@ -1,6 +1,6 @@
 # Getting Started With CascableCore
 
-CascableCore is a framework for connecting to and working with WiFi-enabled cameras from Canon, Fujifilm, Nikon, Olympus, Panasonic, and Sony.
+CascableCore is a framework for connecting to and working with cameras from Canon, Fujifilm, Nikon, Olympus, Panasonic, and Sony.
 
 This document is a technical quick-start guide, giving an overview of the framework's overall use and some tips and tricks for getting started efficiently.
 
@@ -68,9 +68,29 @@ Again, these parameters are only needed when working in the iOS Simulator.
 
 Once you've discovered a camera, you'll probably want to connect to it! 
 
-It's important to be aware that sometimes, cameras will halt the incoming connection process to ask the user something. This typically happens if the camera's connection workflow requires 'pairing' with apps.
+It's important to be aware that sometimes, cameras will halt the incoming connection process to ask for authentication from the user. This can be a simple "confirm on the camera" pairing procedure, or a request for authentication details such as a username and password.
 
-When this occurs, CascableCore invokes what's called a "user intervention callback". When this is called, it's important to display UI in your app telling the user that they need to look at their camera and follow any on-screen instructions. Once the camera continues with the connection, CascableCore will call the user intervention callback again letting you know that it's safe to hide the UI. 
+When this occurs, CascableCore invokes what's called an "authentication request" callback. When this is called, it's important to display UI in your app telling the user what they need to do, then (if necessary) submit authentication details. Once the camera continues with the connection, CascableCore will call the "authentication resolved" callback, letting you know that it's safe to hide the UI.
+
+This authentication request/resolved flow can happen multiple times during a connection if the user, for instance, submits an incorrect username/password. The camera may give the user an opportunity to resubmit. However, the request/resolved callbacks are *always* done in pairs. For example, if the user submits an incorrect username/password the first time:
+
+```
+    Start connection
+             V
+    Authentication request
+             V
+    (Submit incorrect password)
+             V
+    Authentication resolved
+             V
+    Authentication request
+             V
+    (Submit correct password)
+             V
+    Authentication resolved
+             V
+    Connection complete
+```
 
 In our own apps, we display a dialog like this:
 
@@ -79,18 +99,27 @@ In our own apps, we display a dialog like this:
 </p>
 
 ```objc
-CBLCameraConnectionUserInterventionBlock userIntervention = 
-    ^(BOOL displayUI, _Nullable dispatch_block_t cancelConnectionBlock) 
-{
-    if (displayUI) {
-        // If we wanted to cancel the connection at this point, call the passed cancelConnectionBlock().
-        [self showLookAtCameraDialog];
-    } else {
-        // The user intervention callback will never be invoked with displayUI set to NO without
-        // first being invoked with it set to YES.
-        [self hideLookAtCameraDialog];
+CBLCameraAuthenticationRequestBlock authRequest = ^(id <CBLCameraAuthenticationContext> context) {
+    // Which UI gets displayed depends on the type of authentication the camera is asking for.
+
+    switch (context.type) {
+        case CBLCameraAuthenticationTypeInteractWithCamera:
+            [self presentInteractWithCameraAuthenticationUI:context];
+            break;
+
+        case CBLCameraAuthenticationTypeUsernameAndPassword:
+            [self presentUsernameAndPasswordAuthenticationUI:context];
+            break;
+
+        case CBLCameraAuthenticationTypeFourDigitNumericCode:
+            [self presentFourDigitNumericCodeAuthenticationUI:context];
+            break;
     }
-}
+};
+
+CBLCameraAuthenticationResolvedBlock authResolved = ^() {
+    [self dismissAuthenticationUI];
+};
 ```
 
 When the connection to the camera completes (or fails), the connection completion block will be called. You can also observe the status of the `connected` and `connectionStatus` properties.
@@ -98,8 +127,9 @@ When the connection to the camera completes (or fails), the connection completio
 ```objc
 id <CBLCamera> camera = …;
 
-[camera connectWithClientName:@"My Awesome App" 
-           completionCallback:^(NSError *error, NSArray *warnings) {
+[camera connectWithAuthenticationRequestCallback:authRequest
+                  authenticationResolvedCallback:authResolved
+                              completionCallback:^(NSError *error, NSArray *warnings) {
 
     if (error != nil) {
         if (error.code == CBLErrorCodeCancelledByUser) {
@@ -119,6 +149,8 @@ id <CBLCamera> camera = …;
 } userInterventionCallback:userIntervention];
 ```
 
+For a complete example implementation of handling camera authentication, see the demo projects in this repository.
+
 Disconnecting from a connected camera is simpler. If you're holding the main thread of your application during disconnect (for example, disconnecting nicely from a camera while the application quits), you can request the callback from this call be delivered on a background queue to ease threading semantics.
 
 ```objc
@@ -131,7 +163,7 @@ id <CBLCamera> camera = …;
 
 #### Handling Unexpected Disconnects
 
-It's a reasonably common occurrance that the camera can disconnect unexpectedly - for example, the camera's battery can run out of power, or the user can move out of Wi-fi range, etc. 
+It's a reasonably common occurrence that the camera can disconnect unexpectedly - for example, the camera's battery can run out of power, or the user can move out of Wi-fi range, etc. 
 
 To handle this correctly, add a Key-Value Observer to your camera's `connectionState` property, and in your handler for this, check the camera's `disconnectionWasExpected` property.
 
@@ -312,15 +344,15 @@ for (id <CBLCameraLiveViewAFArea> afArea in liveViewFrame.flexiZoneAFRects) {
 }
 ```
 
-## Shooting Images and Shot Preview
+## Shooting Images and Camera-Initiated Transfer
 
 To shoot an image, you need to engage autofocus, engage the shutter, release the shutter, then release autofocus using `CBLCamera`'s, `engageAutoFocus:`, `engageShutter:`, `disengageShutter:` and `disengageAutoFocus:` methods. Please note that these methods are all asynchronous (like most other requests).
 
 Alternatively, if you don't need fine-grained control, you can use the helper method `invokeOneShotShutterExplicitlyEngagingAutoFocus:completionCallback:`.
 
-To access shot photos, you need to switch the camera to the `CBLCameraAvailableCommandCategoryFilesystemAccess` command category and iterate the filesystem in search of the new photo. However, if a lower-resolution (typically 2-3 megapixel) preview is sufficient, CascableCore provides shot preview support for most cameras.
+To access shot photos, you need to switch the camera to the `CBLCameraAvailableCommandCategoryFilesystemAccess` command category and iterate the filesystem in search of the new photo. However, if a lower-resolution (typically 2-3 megapixel) preview is sufficient, CascableCore provides camera-initiated transfers for most cameras.
 
-Shot preview delivers a preview of a photo shortly after it is taken, without needing to switch away from the remote shooting command category and disabling live view etc. As this preview is delivered entirely in the camera's desired timeframe, you must register an observer block for shot preview:
+Camera-initiated transfers deliver a preview (and sometimes the full image if the user is shooting tethered) of a photo shortly after it's taken, without needing to switch away from the remote shooting command category and disabling live view etc. As this preview is delivered entirely in the camera's desired timeframe, you must register an observer block for camera-initiated transfers:
 
 ```objc
 id <CBLCamera> camera = …;
@@ -328,20 +360,10 @@ id <CBLCamera> camera = …;
 // You only need to register for shot preview once in the camera's 
 // lifespan — the callback will be called repeatedly as required.
 
-[camera addShotPreviewObserver:^(id <CBLCameraShotPreviewDelivery> shotPreview) {
-    // When a shot preview delivery object is obtained, it can be retained for a 
-    // short period while you prepare your UI. However, shot previews can become
-    // invalid over time, so it's important to check before attempting to fetch the image.
-    if (!shotPreview.isValid) {
-        return;
-    }
+self.cameraInititatedTransferToken = 
+    [self.camera addCameraInitiatedTransferHandler:^(id <CBLCameraInitiatedTransferRequest> req) {
 
-    [shotPreview fetchShotPreview:^(NSData* rawImageData, UIImage *image, NSError *error) {
-        // This operation is async and can take a few seconds.
-        if (error != nil && image != nil) {
-            [self showShotPreviewImage:image];
-        }
-    }];
+    [self handleCameraInitiatedTransferRequest:req];
 }];
 
 // Now we've registered, we can take a picture and a preview will be delivered soon after.
@@ -350,6 +372,47 @@ id <CBLCamera> camera = …;
     // our registered shot preview observer will be called automatically.
     NSLog(@"Shot taken with error: %@", error);
 }];
+
+-(void)handleCameraInitiatedTransferRequest:(id <CBLCameraInitiatedTransferRequest>)request {
+
+    // Camera-initated transfer requests get sent by supported cameras when a new photo has been taken and the
+    // camera is presenting on opportunity for that photo to be transferred to a connected host. Transfer requests
+    // can become invalid after an amount of time, so it's important to check they're still valid before fetching them.
+
+    // In some situations, this transfer may be the *only* destination of an image — for example, if the camera
+    // doesn't have a memory card present or is set to a "host only" image saving mode. If this is the case, the
+    // request's `-isOnlyDestinationForImage` property will be set to `YES`. These requests should be executed
+    // with the `CBLCameraInitiatedTransferRepresentationOriginal` representation to get the original image file
+    // and to avoid data loss. However, for this example we're going to ignore that and only care about previews.
+
+    // Since executing a transfer can delay other commands, they're only executed if you ask for them, which we do
+    // here 100% of the time if a preview representation is available.
+
+    if (!request.isValid) {
+        return;
+    }
+
+    if (![request canProvideRepresentation:CBLCameraInitiatedTransferRepresentationPreview]) {
+        return;
+    }
+
+    [request executeTransferForRepresentations:CBLCameraInitiatedTransferRepresentationPreview
+                             completionHandler:^(id <CBLCameraInitiatedTransferResult> result, NSError *error) {
+
+        if (error != nil || result == nil) {
+            NSLog(@"%@: Camera-initiated transfer failed with error: %@", THIS_FILE, error);
+            return;
+        }
+
+        [result generatePreviewImage:^(UIImage *previewImage, NSError *error) {
+            if (previewImage == nil) {
+                NSLog(@"Failed to generate preview image with error: %@", error);
+            } else {
+                [self showShotPreviewImage: previewImage];
+            }
+        }];
+    }];
+}
 ```
 
 ## Properties
