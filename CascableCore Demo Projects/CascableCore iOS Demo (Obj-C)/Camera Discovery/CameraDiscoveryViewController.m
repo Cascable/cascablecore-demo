@@ -8,6 +8,7 @@
 
 #import "CameraDiscoveryViewController.h"
 @import CascableCore;
+@import CascableCoreSimulatedCamera;
 #import "Macros.h"
 #import "CameraViewController.h"
 
@@ -227,6 +228,9 @@
 
     // Set up discovery using delegate methods. You can also use KVO or block callbacks.
     CBLCameraDiscovery *discovery = [CBLCameraDiscovery sharedInstance];
+
+    // Set this to `YES` to use the simulated camera. By default we want to use a real camera.
+    [discovery setEnabled:NO forPluginWithIdentifier:CBLSimulatedCameraEntryPoint.pluginIdentifier];
 
     // The client name will be shown on the screen of some cameras when pairing.
     // It must be set before you start searching for cameras.

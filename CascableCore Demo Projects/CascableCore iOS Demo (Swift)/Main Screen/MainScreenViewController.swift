@@ -124,7 +124,15 @@ import CascableCoreSwift
         // reduce code paths, in this example we just set the required command category without checking if it's
         // already available first.
 
-        let categoryName = (category == .stillsShooting ? "stills shooting" : "filesystem access")
+        let categoryName: String = {
+            switch category {
+            case .stillsShooting: return "stills shooting"
+            case .videoRecording: return "video recordings"
+            case .filesystemAccess: return "filesystem access"
+            default: return "unknown"
+            }
+        }()
+
         print("\(CurrentFileName()): Switching camera to \(categoryName)…")
 
         view.isUserInteractionEnabled = false
@@ -171,8 +179,9 @@ import CascableCoreSwift
 
     enum DemoScreenRow: Int {
         case liveView = 0
-        case properties = 1
-        case fileSystem = 2
+        case video = 1
+        case properties = 2
+        case fileSystem = 3
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -181,6 +190,7 @@ import CascableCoreSwift
 
         switch tappedRow {
         case .liveView: ensureCameraAllows(.stillsShooting, thenPerform: "liveViewShooting")
+        case .video: ensureCameraAllows(.videoRecording, thenPerform: "videoRecording")
         case .properties: ensureCameraAllows(.stillsShooting, thenPerform: "properties")
         case .fileSystem: ensureCameraAllows(.filesystemAccess, thenPerform: "filesystem")
         }

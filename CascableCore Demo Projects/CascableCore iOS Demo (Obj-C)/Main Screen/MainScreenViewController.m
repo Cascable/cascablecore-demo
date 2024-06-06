@@ -11,8 +11,9 @@
 
 typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     DemoScreenRowLiveView = 0,
-    DemoScreenRowProperties = 1,
-    DemoScreenRowFilesystem = 2
+    DemoScreenRowVideoRecording = 1,
+    DemoScreenRowProperties = 2,
+    DemoScreenRowFilesystem = 3
 };
 
 @interface MainScreenViewController ()
@@ -163,7 +164,24 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     // However, it's a harmless operation to set the command category to one that's already allowed. Therefore, to reduce
     // code paths, in this example we just set the required command category without checking if it's already available first.
 
-    NSString *categoryName = category == CBLCameraAvailableCommandCategoryStillsShooting ? @"stills shooting" : @"filesystem access";
+    NSString *categoryName = @"unknown";
+    switch (category) {
+        case CBLCameraAvailableCommandCategoryStillsShooting:
+            categoryName = @"stills shooting";
+            break;
+
+        case CBLCameraAvailableCommandCategoryVideoRecording:
+            categoryName = @"video recording";
+            break;
+            
+        case CBLCameraAvailableCommandCategoryFilesystemAccess:
+            categoryName = @"filesystem access";
+            break;
+
+        default:
+            break;
+    }
+
     NSLog(@"%@: Switching camera category to %@…", THIS_FILE, categoryName);
 
     self.view.userInteractionEnabled = NO;
@@ -172,11 +190,27 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
     CBLWeakify(self);
     [self.camera setCurrentCommandCategories:category completionCallback:^(NSError *error) {
         CBLStrongify(self);
-        NSLog(@"%@: …category switch complete.", THIS_FILE);
-        [self performSegueWithIdentifier:segueIdentifier sender:self];
         self.view.userInteractionEnabled = YES;
         [self hideBusyOverlay];
+        if (error == nil) {
+            NSLog(@"%@: …category switch complete.", THIS_FILE);
+            [self performSegueWithIdentifier:segueIdentifier sender:self];
+        } else {
+            NSLog(@"%@: …category switch got error: %@.", THIS_FILE, error.localizedDescription);
+            [self displayModeSwitchError:error];
+        }
     }];
+}
+
+-(void)displayModeSwitchError:(NSError * _Nonnull)error {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error!"
+                                                                   message:@"The camera doesn't support this functionality."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }]];
+
+     [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(void)showBusyOverlay {
@@ -207,6 +241,9 @@ typedef NS_ENUM(NSUInteger, DemoScreenRow) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == DemoScreenRowLiveView) {
         [self ensureCameraAllows:CBLCameraAvailableCommandCategoryStillsShooting thenPerformSegue:@"liveViewShooting"];
+
+    } else if (indexPath.row == DemoScreenRowVideoRecording) {
+        [self ensureCameraAllows:CBLCameraAvailableCommandCategoryVideoRecording thenPerformSegue:@"videoRecording"];
 
     } else if (indexPath.row == DemoScreenRowProperties) {
         [self ensureCameraAllows:CBLCameraAvailableCommandCategoryStillsShooting thenPerformSegue:@"properties"];

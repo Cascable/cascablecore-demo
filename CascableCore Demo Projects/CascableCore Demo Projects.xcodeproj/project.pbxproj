@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505D136B2C11B7C400565C7C /* VideoRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D136A2C11B7C400565C7C /* VideoRecordingViewController.swift */; };
+		505D136E2C11BB6E00565C7C /* CascableCoreSimulatedCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 505D136D2C11BB6E00565C7C /* CascableCoreSimulatedCamera */; };
+		505D13702C11C0C900565C7C /* CascableCoreSimulatedCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 505D136F2C11C0C900565C7C /* CascableCoreSimulatedCamera */; };
+		505D13742C11C27400565C7C /* VideoRecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505D13722C11C21F00565C7C /* VideoRecordingViewController.m */; };
 		50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C3C8911EA78567006A5766 /* AppDelegate.m */; };
 		50C3C8981EA78567006A5766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C3C8961EA78567006A5766 /* Main.storyboard */; };
 		50EA4F161FC5A80900F4395A /* CascableCoreLicense.m in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4F141FC5A80900F4395A /* CascableCoreLicense.m */; };
@@ -57,6 +61,9 @@
 /* Begin PBXFileReference section */
 		50371E872B109EF200BC7FB7 /* CascableCore iOS Demo (Obj-C).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CascableCore iOS Demo (Obj-C).entitlements"; sourceTree = "<group>"; };
 		50371E882B109F8B00BC7FB7 /* CascableCore iOS Demo (Swift).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CascableCore iOS Demo (Swift).entitlements"; sourceTree = "<group>"; };
+		505D136A2C11B7C400565C7C /* VideoRecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingViewController.swift; sourceTree = "<group>"; };
+		505D13722C11C21F00565C7C /* VideoRecordingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoRecordingViewController.m; sourceTree = "<group>"; };
+		505D13732C11C21F00565C7C /* VideoRecordingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoRecordingViewController.h; sourceTree = "<group>"; };
 		50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CascableCore iOS Demo (Obj-C).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C3C8901EA78567006A5766 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		50C3C8911EA78567006A5766 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -111,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDCCFAA267CB97F00E09C8C /* CascableCoreSwift in Frameworks */,
+				505D13702C11C0C900565C7C /* CascableCoreSimulatedCamera in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,12 +127,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDCCFCF2681F21600E09C8C /* CascableCoreSwift in Frameworks */,
+				505D136E2C11BB6E00565C7C /* CascableCoreSimulatedCamera in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		505D13692C11B7AD00565C7C /* Video Recording */ = {
+			isa = PBXGroup;
+			children = (
+				505D136A2C11B7C400565C7C /* VideoRecordingViewController.swift */,
+			);
+			path = "Video Recording";
+			sourceTree = "<group>";
+		};
+		505D13712C11C20000565C7C /* Video Recording */ = {
+			isa = PBXGroup;
+			children = (
+				505D13732C11C21F00565C7C /* VideoRecordingViewController.h */,
+				505D13722C11C21F00565C7C /* VideoRecordingViewController.m */,
+			);
+			path = "Video Recording";
+			sourceTree = "<group>";
+		};
 		50C3C87F1EA78529006A5766 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +185,7 @@
 				50F5BBCE24975D0500332F9E /* Camera Discovery */,
 				50F5BBB624975D0500332F9E /* Main Screen */,
 				50F5BBC424975D0500332F9E /* Live View and Shooting */,
+				505D13712C11C20000565C7C /* Video Recording */,
 				50F5BBC924975D0500332F9E /* Camera Properties */,
 				50F5BBBD24975D0500332F9E /* File System */,
 				50F5BBB924975D0500332F9E /* Supporting Files */,
@@ -248,6 +275,7 @@
 				ABDCCFC82681E29300E09C8C /* Camera Discovery */,
 				ABDCCFD02681F38700E09C8C /* Main Screen */,
 				ABDCCFD32681FCCF00E09C8C /* Live View and Shooting */,
+				505D13692C11B7AD00565C7C /* Video Recording */,
 				ABDCCFD8268219C200E09C8C /* Camera Properties */,
 				ABDCCFDD268227F100E09C8C /* File System */,
 				ABDCCFBD2681E0A700E09C8C /* LaunchScreen.storyboard */,
@@ -326,6 +354,7 @@
 			name = "CascableCore iOS Demo (Obj-C)";
 			packageProductDependencies = (
 				ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */,
+				505D136F2C11C0C900565C7C /* CascableCoreSimulatedCamera */,
 			);
 			productName = "CascableCore iOS Demo (Obj-C)";
 			productReference = 50C3C88A1EA78567006A5766 /* CascableCore iOS Demo (Obj-C).app */;
@@ -346,6 +375,7 @@
 			name = "CascableCore iOS Demo (Swift)";
 			packageProductDependencies = (
 				ABDCCFCE2681F21600E09C8C /* CascableCoreSwift */,
+				505D136D2C11BB6E00565C7C /* CascableCoreSimulatedCamera */,
 			);
 			productName = "CascableCore iOS Demo (Swift)";
 			productReference = ABDCCFB02681E0A600E09C8C /* CascableCore iOS Demo (Swift).app */;
@@ -383,6 +413,7 @@
 			mainGroup = 50C3C87F1EA78529006A5766;
 			packageReferences = (
 				ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */,
+				505D136C2C11BB6E00565C7C /* XCRemoteSwiftPackageReference "cascablecore-simulated-camera" */,
 			);
 			productRefGroup = 50C3C88B1EA78567006A5766 /* Products */;
 			projectDirPath = "";
@@ -427,6 +458,7 @@
 				50F5BBDC24975D0500332F9E /* CameraDiscoveryViewController.m in Sources */,
 				50F5BBD124975D0500332F9E /* MainScreenViewController.m in Sources */,
 				50F5BBD724975D0500332F9E /* FilesystemItemCell.m in Sources */,
+				505D13742C11C27400565C7C /* VideoRecordingViewController.m in Sources */,
 				50C3C8921EA78567006A5766 /* AppDelegate.m in Sources */,
 				50F5BBDB24975D0500332F9E /* PropertiesViewController.m in Sources */,
 				50F5BBD324975D0500332F9E /* main.m in Sources */,
@@ -452,6 +484,7 @@
 				ABDCCFD7268204A100E09C8C /* ShotPreviewViewController.swift in Sources */,
 				ABDCCFD52681FCF400E09C8C /* LiveViewAndShootingViewController.swift in Sources */,
 				ABDCCFCA2681E2B300E09C8C /* CameraDiscoveryViewController.swift in Sources */,
+				505D136B2C11B7C400565C7C /* VideoRecordingViewController.swift in Sources */,
 				ABDCCFDC268221BE00E09C8C /* PropertiesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -808,6 +841,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		505D136C2C11BB6E00565C7C /* XCRemoteSwiftPackageReference "cascablecore-simulated-camera" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cascable/cascablecore-simulated-camera";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cascable/cascablecore-swift";
@@ -819,6 +860,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		505D136D2C11BB6E00565C7C /* CascableCoreSimulatedCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 505D136C2C11BB6E00565C7C /* XCRemoteSwiftPackageReference "cascablecore-simulated-camera" */;
+			productName = CascableCoreSimulatedCamera;
+		};
+		505D136F2C11C0C900565C7C /* CascableCoreSimulatedCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 505D136C2C11BB6E00565C7C /* XCRemoteSwiftPackageReference "cascablecore-simulated-camera" */;
+			productName = CascableCoreSimulatedCamera;
+		};
 		ABDCCFA9267CB97F00E09C8C /* CascableCoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */;

@@ -1,5 +1,5 @@
 {
-  "originHash" : "cdbbd503e623a4ab165ce66bf8c545f0041caa0c670b4a91a99f4f9d3c8b76c7",
+  "originHash" : "7a78766de59bc13238eb5ac38b95a8372b8b48b5e9288d25c7ecf9f6dac71853",
   "pins" : [
     {
       "identity" : "cascablecore-distribution",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "4a223b29390f5afb1f4272fe4ceb46db074ea5ba",
         "version" : "13.2.0"
+      }
+    },
+    {
+      "identity" : "cascablecore-simulated-camera",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Cascable/cascablecore-simulated-camera",
+      "state" : {
+        "revision" : "b6c0f95a64848cec7dac2845401c1f5d0cfc667e",
+        "version" : "1.0.2"
       }
     },
     {

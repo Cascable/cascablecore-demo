@@ -1,6 +1,7 @@
 import UIKit
 import CascableCore
 import CascableCoreSwift
+import CascableCoreSimulatedCamera
 
 @objc(CameraDiscoveryViewController)
 class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
@@ -210,6 +211,14 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
 
         // Set up discovery using delegate methods. You can also use KVO or block callbacks.
         let discovery = CameraDiscovery.shared
+
+        // Configure the simulated camera.
+        var config = SimulatedCameraConfiguration.default
+        config.connectionAuthentication = .none
+        config.apply()
+
+        // Set this to `true` to use the simulated camera. By default we want to use a real camera.
+        discovery.setEnabled(false, forPluginWithIdentifier: SimulatedCameraPluginIdentifier)
 
         // The client name will be shown on the screen of some cameras when pairing.
         // It must be set before you start searching for cameras.
