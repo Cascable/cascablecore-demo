@@ -1,12 +1,13 @@
 {
+  "originHash" : "cdbbd503e623a4ab165ce66bf8c545f0041caa0c670b4a91a99f4f9d3c8b76c7",
   "pins" : [
     {
       "identity" : "cascablecore-distribution",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Cascable/cascablecore-distribution",
       "state" : {
-        "revision" : "861ba8991cd67aa4532dec2794905c5f400feb60",
-        "version" : "13.0.2"
+        "revision" : "4a223b29390f5afb1f4272fe4ceb46db074ea5ba",
+        "version" : "13.2.0"
       }
     },
     {
@@ -14,10 +15,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/cascable/cascablecore-swift",
       "state" : {
-        "revision" : "e871d7f118e19a617f0c63125a115b894a6b233c",
-        "version" : "13.0.2"
+        "revision" : "931906bccdae3bcb705bbfcc29ee42e1b701dd3c",
+        "version" : "13.2.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
