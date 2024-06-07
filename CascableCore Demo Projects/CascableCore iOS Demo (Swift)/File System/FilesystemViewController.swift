@@ -26,8 +26,8 @@ import CascableCore
         let scanner = CameraFileScanning.shared
 
         let predicate: CameraFileScanningPredicate = {
-            // We're only interested in images and items that don't have loaded metadata (they're probably images too).
-            return $0.isKnownImageType || !$0.metadataLoaded
+            // We're only interested in images, videos, and items that don't have loaded metadata (they're probably images or videos too).
+            return $0.isKnownImageType || $0.isKnownVideoType || !$0.metadataLoaded
         }
 
         let progress = scanner.scanForFiles(in: camera, matching: predicate) { [weak self] result in

@@ -35,8 +35,8 @@
     CameraFileScanning *scanner = [CameraFileScanning sharedInstance];
 
     NSProgress *progress = [scanner scanForFilesInCamera:self.camera matchingPredicate:^BOOL(id <CBLFileSystemItem> item) {
-        // We're only interested in images and items that don't have loaded metadata (they're probably images too).
-        return item.isKnownImageType || !item.metadataLoaded;
+        // We're only interested in images, videos, and items that don't have loaded metadata (they're probably images or videos too).
+        return item.isKnownImageType || item.isKnownVideoType || !item.metadataLoaded;
 
     } callback:^(NSArray <id <CBLFileSystemItem>> *items, NSError *error) {
         NSLog(@"%@: Camera scan got %@ matched items", THIS_FILE, @(items.count));
