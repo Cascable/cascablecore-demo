@@ -86,7 +86,7 @@
 -(void)displayAuthenticationUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
 
     // What we display to the user depends on which kind of authentication the camera wants. Currently,
-    // there are three kinds:
+    // there are four kinds:
     //
     // - "Interact with camera" means that the only thing you can do is cancel the connection. The user must
     //   physically interact with the camera to approve the connection.
@@ -94,6 +94,8 @@
     // - "Username and password" means that a username and password should be collected and submitted.
     //
     // - "Four digit code" means that a four digic numeric code should be collected and submitted.
+    //
+    // - "Connect to WiFi network" means that the user needs to manually connect to the given WiFi network.
 
     switch (authenticationContext.type) {
         case CBLCameraAuthenticationTypeInteractWithCamera:
@@ -106,6 +108,10 @@
 
         case CBLCameraAuthenticationTypeFourDigitNumericCode:
             [self presentFourDigitNumericCodeAuthenticationUI:authenticationContext];
+            break;
+
+        case CBLCameraAuthenticationTypeConnectToWiFiNetwork:
+            [self presentSwitchToWiFiNetworkUI:authenticationContext];
             break;
     }
 }
@@ -207,6 +213,38 @@
         if (code == nil) { code = @""; }
         [self dismissAuthenticationUI];
         [authenticationContext submitNumericCode:code];
+    }]];
+
+    self.authenticationAlert = alert;
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)presentSwitchToWiFiNetworkUI:(id <CBLCameraAuthenticationContext> _Nonnull)authenticationContext {
+    // Here, we display an alert instructing the user to switch to the given WiFi network. In this case, CascableCore
+    // must be instructed that the switch has been done. After this, the `authenticationResolvedCallback` given to
+    // the camera's connection invocation will be called.
+
+    NSString *message = [NSString stringWithFormat:@"Please connect to the following WiFi network:\n\nSSID: %@\n\nPassword: %@",
+                         authenticationContext.wiFiNetworkSSID,
+                         authenticationContext.wiFiNetworkPassword];
+
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:@"Connect To WiFi Network"
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        [self dismissAuthenticationUI];
+        [authenticationContext submitCancellation];
+    }]];
+
+    [alert addAction:[UIAlertAction actionWithTitle:@"I Did It!" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+        // and wait for the `authenticationResolvedCallback` to be called above.
+        [self dismissAuthenticationUI];
+        [authenticationContext submitHasConnectedToWiFiNetwork];
     }]];
 
     self.authenticationAlert = alert;

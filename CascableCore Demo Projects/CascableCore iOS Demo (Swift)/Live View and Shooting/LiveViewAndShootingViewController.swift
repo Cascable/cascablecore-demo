@@ -119,6 +119,21 @@ import Combine
     // MARK: - Live View
 
     @IBOutlet var liveViewImageView: UIImageView!
+    var metalBackedView: CameraLiveViewController?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // In the Swift example here we're going to use the Metal-backed live view rendering view controller
+        // provided by `CascableCoreSwift` for high-performance rendering. The Storyboard is shared with the
+        // Objective-C example which doesn't have the available, so we'll put it in the image view and render
+        // on top of it.
+        let metalBackedViewController = CameraLiveViewController()
+        metalBackedViewController.orientation = .syncWithCamera
+
+        addViewController(metalBackedViewController, asChildOf: liveViewImageView)
+        self.metalBackedView = metalBackedViewController
+    }
 
     // We store our Combine subscribers in here.
     private var liveViewSubscribers: Set<AnyCancellable> = []
@@ -134,7 +149,15 @@ import Combine
 
         // The Combine publisher manages starting and stopping live view, etc. All we need to do is to subscribe to it.
 
-        camera.liveViewPublisher(options: [.maximumFramesPerSecond: FrameRate(fps: 30.0)])
+        let liveViewOptions: [LiveViewOption: Any] = [
+            // To keep resource usage under control, limit frame rate to 30 fps.
+            .maximumFramesPerSecond: FrameRate(fps: 30.0),
+            // Since we're rendering using Metal in this example, we should turn off CascableCore's built-in
+            // image decoding, which is CPU-based and very resource intensive.
+            .skipImageDecoding: false
+        ]
+
+        camera.liveViewPublisher(options: liveViewOptions)
             .receive(on: DispatchQueue.main)
             .sinkWithReadyHandler { [weak self] terminationReason in
 
@@ -152,11 +175,14 @@ import Combine
                 // demand for live view frames nicely. It'll wait to issue demand for more live view frames until
                 // we're ready for more. Here we call it immediately, but if we wanted to implement a background
                 // image processing pipeline, this will help prevent buffer backfill.
-                self?.liveViewImageView.image = frame.image
+                self?.metalBackedView?.render(frame: frame, completionHandler: { orientation, size in
+                    // This completion handler is called when our Metal-backed renderer has rendered the frame.
+                    // We can use the orientation and size properties to sync other UI elements with the image.
 
-                // We must call the ready handler once we're ready for more live view frames. Since we want a nice,
-                // smooth image, we'll call the completion handler without delay.
-                readyForNextFrame()
+                    // We must call the ready handler once we're ready for more live view frames. Since we want a nice,
+                    // smooth image, we'll call the completion handler is soon as our frame has been rendered.
+                    readyForNextFrame()
+                })
             }
             .store(in: &liveViewSubscribers)
     }
@@ -165,6 +191,23 @@ import Combine
         // The camera's live view frame publisher will automatically shut off live view when there's no subscribers
         // left, so all we need to do is remove our observers.
         liveViewSubscribers.removeAll()
+    }
+
+    // MARK: - Layout Helpers
+
+    private func addViewController(_ controller: UIViewController, asChildOf parentView: UIView) {
+        controller.willMove(toParent: self)
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        parentView.addSubview(controller.view)
+
+        NSLayoutConstraint.activate([
+            parentView.topAnchor.constraint(equalTo: controller.view.topAnchor),
+            parentView.bottomAnchor.constraint(equalTo: controller.view.bottomAnchor),
+            parentView.leadingAnchor.constraint(equalTo: controller.view.leadingAnchor),
+            parentView.trailingAnchor.constraint(equalTo: controller.view.trailingAnchor)
+        ])
+
+        addChild(controller)
     }
 
 }

@@ -1,13 +1,13 @@
 {
-  "originHash" : "7a78766de59bc13238eb5ac38b95a8372b8b48b5e9288d25c7ecf9f6dac71853",
+  "originHash" : "02e6933f764934c59dd3d2ff4f851e8ef74d39a0a30c7121e30f1abb22668dac",
   "pins" : [
     {
       "identity" : "cascablecore-distribution",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Cascable/cascablecore-distribution",
       "state" : {
-        "revision" : "4a223b29390f5afb1f4272fe4ceb46db074ea5ba",
-        "version" : "13.2.0"
+        "revision" : "06ec36f697b92c4af92d652856d55bdfd41b0509",
+        "version" : "16.0.0"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Cascable/cascablecore-simulated-camera",
       "state" : {
-        "revision" : "b6c0f95a64848cec7dac2845401c1f5d0cfc667e",
-        "version" : "1.0.2"
+        "revision" : "d2c5add3bfb189e92b8fa0e55a2164fbe4df738f",
+        "version" : "1.0.8"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/cascable/cascablecore-swift",
       "state" : {
-        "revision" : "931906bccdae3bcb705bbfcc29ee42e1b701dd3c",
-        "version" : "13.2.0"
+        "revision" : "e82d1a559d823e481746a5eabed4a280f5b9a778",
+        "version" : "16.0.0"
       }
     }
   ],

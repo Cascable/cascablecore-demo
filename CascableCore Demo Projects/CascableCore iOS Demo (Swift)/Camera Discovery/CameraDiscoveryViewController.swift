@@ -83,7 +83,7 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
     func displayAuthenticationUI(for context: CameraAuthenticationContext) {
 
         // What we display to the user depends on which kind of authentication the camera wants. Currently,
-        // there are three kinds:
+        // there are four kinds:
         //
         // - "Interact with camera" means that the only thing you can do is cancel the connection. The user must
         //   physically interact with the camera to approve the connection.
@@ -91,11 +91,14 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
         // - "Username and password" means that a username and password should be collected and submitted.
         //
         // - "Four digit code" means that a four digic numeric code should be collected and submitted.
+        //
+        // - "Connect to WiFi network" means that the user needs to manually connect to the given WiFi network.
 
         switch context.type {
         case .interactWithCamera: presentInteractWithCameraAuthenticationUI(for: context)
         case .usernameAndPassword: presentUsernameAndPasswordAuthenticationUI(for: context)
         case .fourDigitNumericCode: presentFourDigitNumericCodeAuthenticationUI(for: context)
+        case .connectToWiFiNetwork: presentSwitchToWiFiNetworkUI(for: context)
         @unknown default: fatalError("Got unknown camera authentication type!")
         }
     }
@@ -112,6 +115,33 @@ class CameraDiscoveryViewController: UIViewController, CameraDiscoveryDelegate {
         alert.addAction(UIAlertAction(title: "Disconnect", style: .cancel, handler: { [weak self] _ in
             self?.dismissAuthenticationUI()
             context.submitCancellation()
+        }))
+
+        authenticationAlert = alert
+        present(alert, animated: true)
+    }
+    
+    func presentSwitchToWiFiNetworkUI(for context: CameraAuthenticationContext) {
+        // Here, we display an alert instructing the user to switch to the given WiFi network. In this case, CascableCore
+        // must be instructed that the switch has been done. After this, the `authenticationResolvedCallback` given to
+        // the camera's connection invocation will be called.
+
+        let mesage = String(format: "Please connect to the following WiFi network:\n\nSSID: %@\n\nPassword: %@",
+                            context.wiFiNetworkSSID ?? "(nil)", context.wiFiNetworkPassword ?? "(nil)")
+        let alert = UIAlertController(title: "Connect To WiFi Network", message: mesage, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            self?.dismissAuthenticationUI()
+            context.submitCancellation()
+        }))
+
+        alert.addAction(UIAlertAction(title: "I Did It!", style: .cancel, handler: { [weak self] action in
+            // We dismiss the alert right away here, but we don't have to — we could instead disable the buttons etc
+            // and wait for the `authenticationResolvedCallback` to be called above.
+            self?.dismissAuthenticationUI()
+            context.submitHasConnectedToWiFiNetwork()
         }))
 
         authenticationAlert = alert
