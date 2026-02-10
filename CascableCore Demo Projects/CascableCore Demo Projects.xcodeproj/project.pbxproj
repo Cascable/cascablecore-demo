@@ -389,7 +389,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2620;
 				ORGANIZATIONNAME = "Cascable AB";
 				TargetAttributes = {
 					50C3C8891EA78567006A5766 = {
@@ -846,7 +846,7 @@
 			repositoryURL = "https://github.com/Cascable/cascablecore-simulated-camera";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.8;
+				minimumVersion = 1.0.11;
 			};
 		};
 		ABDCCFA8267CB97F00E09C8C /* XCRemoteSwiftPackageReference "cascablecore-swift" */ = {
@@ -854,7 +854,7 @@
 			repositoryURL = "https://github.com/cascable/cascablecore-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 16.0.0;
+				minimumVersion = 17.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
